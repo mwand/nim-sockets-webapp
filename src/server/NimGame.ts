@@ -1,0 +1,86 @@
+import PlayerList from './PlayerList';
+import { IPlayer } from '../shared/types';
+/**
+ * Represents a game of Nim.
+ * initialized to beginning of game
+ */
+export default class NimGame {
+    private _pile: number;
+    private _limit: number;
+    
+    private _gameInProgress: boolean = false;
+    private _gameOver: boolean = false;
+
+    // the PlayerList maintains the list of players and the current player
+    private _players: PlayerList
+
+    
+    /**
+     * Creates a new instance of the Nim class.
+     * @param initPile The initial number of sticks in the pile.
+     */
+    constructor(initPile: number, turnLimit: number) {
+        this._pile = initPile;
+        this._limit = turnLimit;
+        this._players = new PlayerList();        
+    }
+
+    /** add a player */
+    public addPlayer(player: IPlayer): void {
+        this._players.addPlayer(player);
+        // if this is the first player added, make them the first player to play
+        // .addPlayer() sets the first player to be the current player
+        // if there are two players, start the game
+        if (this._players.nPlayers >= 2) {       
+            this._gameInProgress = true;
+        }
+    }
+
+    /** get the players */
+    public getPlayers(): PlayerList {
+        return this._players;
+    }
+
+    public getCurrentPlayer(): IPlayer | undefined {   
+        return this._players.currentPlayer;
+    }
+    /**
+     * Gets the current number of sticks in the pile.
+     * @returns The current number of sticks in the pile.
+     */
+    public getPile(): number {
+        return this._pile;
+    }
+
+    /**
+     * Determines if the game is over.
+     * @returns True if the game is over (i.e. the pile is empty), false otherwise.
+     */
+    public isGameOver(): boolean {
+        return this._pile === 0;
+    }   
+    
+    /**
+     * Takes a specified number of sticks from the pile.
+     * @param numSticks The number of sticks to take from the pile.
+     * @throws An error if the number of sticks to take is invalid (i.e. less than 1 or greater than the number of sticks in the pile).
+     * if the number of sticks is valid, advances the turn to the next player
+    */
+    public takeSticks(player: IPlayer, numSticks: number): void {
+        if (!this._gameInProgress) {
+            throw new Error("Game not in progress");
+        }
+        if (this._gameOver) {
+            throw new Error("Game is over");
+        }
+        if (player !== this._players.currentPlayer) {
+            throw new Error("Not this player's turn");
+        }
+        if (numSticks < 1 || numSticks > this._limit) {
+            throw new Error(`Invalid number of sticks: ${numSticks}`);
+        }
+        // take the sticks and advance to the next player
+        this._pile -= numSticks;
+        this._players.nextPlayer();
+    }
+}
