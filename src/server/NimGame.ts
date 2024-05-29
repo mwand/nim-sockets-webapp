@@ -1,32 +1,47 @@
 import PlayerList from './PlayerList';
-import { IPlayer } from '../shared/types';
+import { Player } from '../shared/types';
 /**
  * Represents a game of Nim.
  * initialized to beginning of game
  */
-export default class NimGame {
-    private _pile: number;
-    private _limit: number;
+export default class NimGame {  
+
+    /** the number of sticks a player can take on their turn */
+    private _turnLimit: number;
+
+    /** size of the initial pile */
+    private _initPile: number;
+
+      /** size of the current pile */
+      private _pile: number;
     
     private _gameInProgress: boolean = false;
     private _gameOver: boolean = false;
 
     // the PlayerList maintains the list of players and the current player
+    // it has state, so it is not a simple list of players
     private _players: PlayerList
-
     
     /**
      * Creates a new instance of the Nim class.
      * @param initPile The initial number of sticks in the pile.
      */
-    constructor(initPile: number, turnLimit: number) {
+    constructor(initPile: number, turnLimit: number, players: PlayerList) {
+        this._initPile = initPile;
         this._pile = initPile;
-        this._limit = turnLimit;
-        this._players = new PlayerList();        
+        this._turnLimit = turnLimit;
+        this._players = players        
+    }
+
+    /** starts a new game, with the same set of players */
+    public newGame(): void {
+        this._pile = this._initPile;
+        this._gameOver = false;
+        this._gameInProgress = false;
     }
 
     /** add a player */
-    public addPlayer(player: IPlayer): void {
+    public addPlayer(player: Player): void {
         this._players.addPlayer(player);
         // if this is the first player added, make them the first player to play
         // .addPlayer() sets the first player to be the current player
@@ -41,7 +56,7 @@ export default class NimGame {
         return this._players;
     }
 
-    public getCurrentPlayer(): IPlayer | undefined {   
+    public getCurrentPlayer(): Player | undefined {   
         return this._players.currentPlayer;
     }
     /**
@@ -66,7 +81,7 @@ export default class NimGame {
      * @throws An error if the number of sticks to take is invalid (i.e. less than 1 or greater than the number of sticks in the pile).
      * if the number of sticks is valid, advances the turn to the next player
     */
-    public takeSticks(player: IPlayer, numSticks: number): void {
+    public move(player: Player, numSticks: number): void {
         if (!this._gameInProgress) {
             throw new Error("Game not in progress");
         }
@@ -76,7 +91,7 @@ export default class NimGame {
         if (player !== this._players.currentPlayer) {
             throw new Error("Not this player's turn");
         }
-        if (numSticks < 1 || numSticks > this._limit) {
+        if (numSticks < 1 || numSticks > this._turnLimit) {
             throw new Error(`Invalid number of sticks: ${numSticks}`);
         }
         // take the sticks and advance to the next player

@@ -1,8 +1,8 @@
-import type { IPlayer, IPlayerList } from "../shared/types";
+import type { Player, IPlayerList } from "../shared/types";
 
 export default class PlayerList implements IPlayerList {
     /** the players in the game, initially empty */
-    private _players: IPlayer[];
+    private _players: Player[];
     private _currentIndex: number | undefined;
 
 
@@ -12,7 +12,7 @@ export default class PlayerList implements IPlayerList {
 
     /** add a player to the list */
     /** make the first player added the initial current player */
-    public addPlayer(player: IPlayer) {
+    public addPlayer(player: Player) {
         this._players.push(player);
         if (this._players.length === 1) {
             this._currentIndex = 0;
@@ -29,7 +29,7 @@ export default class PlayerList implements IPlayerList {
     }
 
     // the current player
-    public get currentPlayer(): IPlayer | undefined {
+    public get currentPlayer(): Player | undefined {
         return this._currentIndex !== undefined? this._players[this._currentIndex] : undefined;
     }
     

@@ -158,7 +158,7 @@ export default class NimController
 
         // tell the nim object to take the sticks.
         // if the move is invalid, an error will be thrown by the nim object.
-        this.nim.takeSticks(numSticks)
+        this.nim.move(numSticks)
         // this.emit("playerMoved", player, this.turnID, numSticks, this.gameState);
         console.log(`Controller says: ${player} took ${numSticks} sticks; gameState = ${this.gameState}`)
         if (this.nim.isGameOver()) {

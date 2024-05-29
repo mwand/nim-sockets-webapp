@@ -1,11 +1,11 @@
 import PlayerList from "./PlayerList";
-import { IPlayer } from "../shared/types";
+import { Player } from "../shared/types";
 
 describe("PlayerList", () => {
     let playerList: PlayerList;
-    let player1: IPlayer;
-    let player2: IPlayer;
-    let player3: IPlayer;
+    let player1: Player;
+    let player2: Player;
+    let player3: Player;
 
     beforeEach(() => {
         playerList = new PlayerList();

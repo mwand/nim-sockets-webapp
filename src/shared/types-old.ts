@@ -28,6 +28,8 @@ import { Socket as _ClientSocket } from "socket.io-client";
  * Server->AllClients: serverAnnounceClockStarted
  *  
  */
+
+/** old... 
 export interface ServerToClientEvents {
 
 
@@ -70,3 +72,5 @@ export type ClientSocket = _ClientSocket<ServerToClientEvents, ClientToServerEve
 export type SocketClientState = {
     socket: ClientSocket
 }
+
+*/

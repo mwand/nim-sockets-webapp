@@ -3,9 +3,11 @@ import PlayerList from './PlayerList';
 
 describe('NimGame', () => {
     let nimGame: NimGame;
+    let players: PlayerList;
 
     beforeEach(() => {
-        nimGame = new NimGame(10, 3);
+        players = new PlayerList();
+        nimGame = new NimGame(10, 3, players);
     });
 
     it('should initialize a new game with the correct pile and limit', () => {
@@ -21,6 +23,7 @@ describe('NimGame', () => {
         expect(players.currentPlayer).toBe(player);
     });
 
+    // commenting out this test doesn't cause stryker to report any more surviving mutants !?!
     it('should switch to the next player after taking sticks', () => {
         const player1 = { name: 'Alice' };
         const player2 = { name: 'Bob' };
@@ -28,9 +31,9 @@ describe('NimGame', () => {
         nimGame.addPlayer(player1);
         nimGame.addPlayer(player2);
         nimGame.addPlayer(player3);
-        nimGame.takeSticks(player1, 1);
-        nimGame.takeSticks(player2, 2);
-        nimGame.takeSticks(player3, 1);
+        nimGame.move(player1, 1);
+        nimGame.move(player2, 2);
+        nimGame.move(player3, 1);
         expect(nimGame.getPile()).toBe(6);
         expect(nimGame.getCurrentPlayer()).toBe(player1);
     });
@@ -38,22 +41,22 @@ describe('NimGame', () => {
     it('should throw an error if the number of sticks to take is invalid', () => {
         const player = { name: 'Alice' };
         nimGame.addPlayer(player);
-        expect(() => nimGame.takeSticks(player, 0)).toThrow('Game not in progress');
+        expect(() => nimGame.move(player, 0)).toThrow('Game not in progress');
         const player2 = { name: 'Bob' };
         nimGame.addPlayer(player2);
-        expect(() => nimGame.takeSticks(player, 4)).toThrow('Invalid number of sticks');
-        expect(() => nimGame.takeSticks(player, 11)).toThrow('Invalid number of sticks');
+        expect(() => nimGame.move(player, 4)).toThrow('Invalid number of sticks');
+        expect(() => nimGame.move(player, 11)).toThrow('Invalid number of sticks');
     });
 
     it('should end the game when the pile is empty', () => {
         const player1 = { name: 'Alice' };
         const player2 = { name: 'Bob' };
-        nimGame = new NimGame(4, 3);
+        nimGame = new NimGame(4, 3, new PlayerList());
         nimGame.addPlayer(player1);
         nimGame.addPlayer(player2)
-        nimGame.takeSticks(player1, 3);
+        nimGame.move(player1, 3);
         expect(nimGame.isGameOver()).toBe(false);
-        nimGame.takeSticks(player2, 1);
+        nimGame.move(player2, 1);
         expect(nimGame.isGameOver()).toBe(true);
     });
 });
