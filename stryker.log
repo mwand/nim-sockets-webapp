@@ -1,0 +1,1510 @@
+21:58:15 (22712) DEBUG ConfigReader Loading config from stryker.config.json
+21:58:15 (22712) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information",
+  "packageManager": "npm",
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress",
+    "dashboard"
+  ],
+  "testRunner": "jest",
+  "jest": {
+    "configFile": "jest.config.cjs"
+  },
+  "coverageAnalysis": "perTest",
+  "mutate": [
+    "src/server/NimGame.ts",
+    "src/server/PlayerList.ts"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "allowConsoleColors": true,
+  "checkers": [],
+  "checkerNodeArgs": [],
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "allowEmojis": false,
+    "logTests": true,
+    "maxTestsToLog": 3,
+    "reportTests": true,
+    "reportMutants": true,
+    "reportScoreTable": true
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "dryRunOnly": false,
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "ignorePatterns": [],
+  "ignoreStatic": false,
+  "incremental": false,
+  "incrementalFile": "reports/stryker-incremental.json",
+  "force": false,
+  "inPlace": false,
+  "maxConcurrentTestRunners": 9007199254740991,
+  "maxTestRunnerReuse": 0,
+  "mutator": {
+    "plugins": null,
+    "excludedMutations": []
+  },
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "appendPlugins": [],
+  "htmlReporter": {
+    "fileName": "reports/mutation/mutation.html"
+  },
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "disableTypeChecks": true,
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true,
+  "testRunnerNodeArgs": [],
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "dryRunTimeoutMinutes": 5,
+  "tsconfigFile": "tsconfig.json",
+  "warnings": true,
+  "disableBail": false,
+  "allowEmpty": false,
+  "ignorers": []
+}
+21:58:15 (22712) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\node_modules\@stryker-mutator
+21:58:15 (22712) DEBUG PluginLoader Loading plugin "@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+21:58:15 (22712) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+21:58:15 (22712) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+21:58:15 (22712) DEBUG MetaSchemaBuilder Contributing 1 schemas from plugins to options validation.
+21:58:15 (22712) INFO ProjectReader Found 2 of 28 file(s) to be mutated.
+21:58:15 (22712) DEBUG ProjectReader All input files: [
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.eslintrc.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.gitignore",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\next-env.d.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\next.config.mjs",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\package-lock.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\package.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\public\\next.svg",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\public\\vercel.svg",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\README.md",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\favicon.ico",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\globals.css",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\layout.tsx",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\page.module.css",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\page.tsx",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\Clock.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\jest.config.cjs",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimController.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.spec.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.spec.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\server-new.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\server.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\ServerController.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\shared\\types-old.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\shared\\types.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\stryker.config.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\tsconfig.json"
+]
+21:58:15 (22712) DEBUG ProjectReader Files to mutate: [
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.ts"
+]
+21:58:15 (22712) DEBUG TemporaryDirectory Using temp directory "C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp"
+21:58:15 (22712) DEBUG Instrumenter Instrumenting 2 source files with mutants
+21:58:15 (22712) DEBUG Instrumenter Instrumented src\server\NimGame.ts (44 mutant(s))
+21:58:15 (22712) DEBUG Instrumenter Instrumented src\server\PlayerList.ts (21 mutant(s))
+21:58:15 (22712) INFO Instrumenter Instrumented 2 source file(s) with 65 mutant(s)
+21:58:15 (22712) DEBUG TSConfigPreprocessor Rewriting file ProjectFile {
+  fs: [FileSystem],
+  name: 'C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\tsconfig.json',
+  mutate: false
+}
+21:58:15 (22712) INFO ConcurrencyTokenProvider Creating 7 test runner process(es).
+21:58:15 (22712) DEBUG ChildProcessProxy Started CheckerWorker in worker process 0 with pid 29704 
+21:58:16 (29704) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+21:58:16 (29704) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+21:58:17 (22712) DEBUG Sandbox Creating a sandbox for files in C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8664510
+21:58:17 (22712) DEBUG Sandbox Start symlink node_modules
+21:58:17 (22712) DEBUG Sandbox Create symlink from C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\node_modules to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8664510\node_modules
+21:58:17 (22712) DEBUG BroadcastReporter Broadcasting to reporters ["html","clear-text","progress","dashboard"]
+21:58:17 (22712) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 0 with pid 11292 
+21:58:17 (22712) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 1 with pid 24956 
+21:58:18 (11292) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+21:58:18 (11292) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+21:58:18 (24956) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+21:58:18 (24956) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+21:58:18 (24956) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8664510
+21:58:18 (11292) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8664510
+21:58:18 (24956) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+21:58:18 (11292) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+21:58:18 (24956) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+21:58:18 (11292) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+21:58:18 (22712) DEBUG Stryker Not removing the temp dir because an error occurred
+21:58:18 (22712) ERROR Stryker Unexpected error occurred while running Stryker StrykerError: Error: MODULE_NOT_FOUND (undefined) Error: Cannot find module 'C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8664510\jest.config.cjs'
+Require stack:
+- C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\node_modules\@stryker-mutator\util\dist\src\require-resolve.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Function.resolve (node:internal/modules/helpers:188:19)
+    at resolveFromCwd (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/util/dist/src/require-resolve.js:16:20)
+    at CustomJestConfigLoader.requireResolve [as requireFromCwd] (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/util/dist/src/require-resolve.js:8:20)
+    at CustomJestConfigLoader.readConfigFromJestConfigFile (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/jest-runner/dist/src/config-loaders/custom-jest-config-loader.js:53:31)
+    at CustomJestConfigLoader.readConfigManually (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/jest-runner/dist/src/config-loaders/custom-jest-config-loader.js:46:40)
+    at CustomJestConfigLoader.loadConfig (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/jest-runner/dist/src/config-loaders/custom-jest-config-loader.js:25:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async JestTestRunner.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/jest-runner/dist/src/jest-test-runner.js:59:32)
+    at async ChildProcessTestRunnerWorker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/test-runner/child-process-test-runner-worker.js:16:13)
+    at ChildProcess.<anonymous> (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy.js:122:72)
+    at ChildProcess.emit (node:events:517:28)
+    at emit (node:internal/child_process:944:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  innerError: undefined
+}
+21:58:18 (22712) INFO Stryker This might be a known problem with a solution documented in our troubleshooting guide.
+21:58:18 (22712) INFO Stryker You can find it at https://stryker-mutator.io/docs/stryker-js/troubleshooting/
+21:58:18 (22712) DEBUG ChildProcessProxy Disposing of worker process 11292
+21:58:18 (22712) DEBUG ChildProcessProxy Disposing of worker process 24956
+21:58:18 (22712) DEBUG ChildProcessProxy Kill 11292
+21:58:18 (22712) DEBUG ChildProcessProxy Kill 24956
+21:58:19 (22712) DEBUG ChildProcessProxy Disposing of worker process 29704
+21:58:19 (22712) DEBUG ChildProcessProxy Kill 29704
+22:02:32 (5592) DEBUG ConfigReader Loading config from stryker.config.json
+22:02:32 (5592) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information",
+  "packageManager": "npm",
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress",
+    "dashboard"
+  ],
+  "testRunner": "jest",
+  "jest": {
+    "configFile": "jest.config.cjs"
+  },
+  "coverageAnalysis": "perTest",
+  "checkers": [
+    "typescript"
+  ],
+  "tsconfigFile": "tsconfig.json",
+  "typescriptChecker": {
+    "prioritizePerformanceOverAccuracy": true
+  },
+  "mutate": [
+    "src/server/NimGame.ts",
+    "src/server/PlayerList.ts"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "allowConsoleColors": true,
+  "checkerNodeArgs": [],
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "allowEmojis": false,
+    "logTests": true,
+    "maxTestsToLog": 3,
+    "reportTests": true,
+    "reportMutants": true,
+    "reportScoreTable": true
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "dryRunOnly": false,
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "ignorePatterns": [],
+  "ignoreStatic": false,
+  "incremental": false,
+  "incrementalFile": "reports/stryker-incremental.json",
+  "force": false,
+  "inPlace": false,
+  "maxConcurrentTestRunners": 9007199254740991,
+  "maxTestRunnerReuse": 0,
+  "mutator": {
+    "plugins": null,
+    "excludedMutations": []
+  },
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "appendPlugins": [],
+  "htmlReporter": {
+    "fileName": "reports/mutation/mutation.html"
+  },
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "disableTypeChecks": true,
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true,
+  "testRunnerNodeArgs": [],
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "dryRunTimeoutMinutes": 5,
+  "warnings": true,
+  "disableBail": false,
+  "allowEmpty": false,
+  "ignorers": []
+}
+22:02:32 (5592) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\node_modules\@stryker-mutator
+22:02:32 (5592) DEBUG PluginLoader Loading plugin "@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+22:02:32 (5592) DEBUG PluginLoader Loading plugin "@stryker-mutator/typescript-checker" (matched with expression @stryker-mutator/*)
+22:02:32 (5592) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:02:32 (5592) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:02:32 (5592) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:02:32 (5592) DEBUG MetaSchemaBuilder Contributing 2 schemas from plugins to options validation.
+22:02:32 (5592) INFO ProjectReader Found 2 of 28 file(s) to be mutated.
+22:02:32 (5592) DEBUG ProjectReader All input files: [
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.eslintrc.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.gitignore",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\jest.config.cjs",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\next-env.d.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\next.config.mjs",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\package-lock.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\package.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\public\\next.svg",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\public\\vercel.svg",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\README.md",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\favicon.ico",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\globals.css",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\layout.tsx",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\page.module.css",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\page.tsx",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\Clock.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimController.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.spec.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.spec.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\server-new.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\server.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\ServerController.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\shared\\types-old.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\shared\\types.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\stryker.config.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\tsconfig.json"
+]
+22:02:32 (5592) DEBUG ProjectReader Files to mutate: [
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.ts"
+]
+22:02:32 (5592) DEBUG TemporaryDirectory Using temp directory "C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp"
+22:02:32 (5592) DEBUG Instrumenter Instrumenting 2 source files with mutants
+22:02:33 (5592) DEBUG Instrumenter Instrumented src\server\NimGame.ts (44 mutant(s))
+22:02:33 (5592) DEBUG Instrumenter Instrumented src\server\PlayerList.ts (21 mutant(s))
+22:02:33 (5592) INFO Instrumenter Instrumented 2 source file(s) with 65 mutant(s)
+22:02:33 (5592) DEBUG TSConfigPreprocessor Rewriting file ProjectFile {
+  fs: [FileSystem],
+  name: 'C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\tsconfig.json',
+  mutate: false
+}
+22:02:33 (5592) INFO ConcurrencyTokenProvider Creating 4 checker process(es) and 3 test runner process(es).
+22:02:33 (5592) DEBUG ChildProcessProxy Started CheckerWorker in worker process 0 with pid 29496 
+22:02:33 (5592) DEBUG ChildProcessProxy Started CheckerWorker in worker process 1 with pid 13540 
+22:02:34 (13540) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:02:34 (13540) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:02:34 (13540) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:02:34 (29496) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:02:34 (29496) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:02:34 (29496) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:02:46 (5592) DEBUG Stryker Not removing the temp dir because an error occurred
+22:02:46 (5592) ERROR Stryker Unexpected error occurred while running Stryker StrykerError: Error: An error occurred during initialization of the "typescript" checker. Inner error: Error: Typescript error(s) found in dry run compilation: src/server/server-new.ts(102,1): error TS1005: '}' expected.
+
+Error: Typescript error(s) found in dry run compilation: src/server/server-new.ts(102,1): error TS1005: '}' expected.
+
+    at TypescriptChecker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/typescript-checker/dist/src/typescript-checker.js:48:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CheckerWorker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/checker/checker-worker.js:13:17)
+    at async ChildProcessProxyWorker.handleCall (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy-worker.js:85:28)
+Error: An error occurred during initialization of the "typescript" checker. Inner error: Error: Typescript error(s) found in dry run compilation: src/server/server-new.ts(102,1): error TS1005: '}' expected.
+
+Error: Typescript error(s) found in dry run compilation: src/server/server-new.ts(102,1): error TS1005: '}' expected.
+
+    at TypescriptChecker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/typescript-checker/dist/src/typescript-checker.js:48:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CheckerWorker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/checker/checker-worker.js:13:17)
+    at async ChildProcessProxyWorker.handleCall (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy-worker.js:85:28)
+    at CheckerWorker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/checker/checker-worker.js:16:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ChildProcessProxyWorker.handleCall (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy-worker.js:85:28)
+    at ChildProcess.<anonymous> (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy.js:122:72)
+    at ChildProcess.emit (node:events:517:28)
+    at emit (node:internal/child_process:944:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  innerError: undefined
+}
+22:02:46 (5592) INFO Stryker This might be a known problem with a solution documented in our troubleshooting guide.
+22:02:46 (5592) INFO Stryker You can find it at https://stryker-mutator.io/docs/stryker-js/troubleshooting/
+22:02:46 (5592) DEBUG ChildProcessProxy Disposing of worker process 29496
+22:02:46 (5592) DEBUG ChildProcessProxy Disposing of worker process 13540
+22:02:46 (5592) DEBUG ChildProcessProxy Kill 13540
+22:02:46 (5592) DEBUG ChildProcessProxy Kill 29496
+22:04:26 (24060) DEBUG ConfigReader Loading config from stryker.config.json
+22:04:26 (24060) ERROR Stryker Invalid config file "stryker.config.json". File contains invalid JSON. Inner error: SyntaxError: Unexpected token } in JSON at position 676
+SyntaxError: Unexpected token } in JSON at position 676
+    at JSON.parse (<anonymous>)
+    at ConfigReader.readJsonConfig (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/config/config-reader.js:80:25)
+    at async ConfigReader.readConfig (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/config/config-reader.js:37:25)
+    at async PrepareExecutor.execute (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/process/1-prepare-executor.js:33:25)
+    at async Stryker.runMutationTest (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/stryker.js:29:48)
+22:04:54 (2768) DEBUG ConfigReader Loading config from stryker.config.json
+22:04:54 (2768) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information",
+  "packageManager": "npm",
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress",
+    "dashboard"
+  ],
+  "testRunner": "jest",
+  "jest": {
+    "configFile": "jest.config.cjs"
+  },
+  "coverageAnalysis": "perTest",
+  "checkers": [
+    "typescript"
+  ],
+  "tsconfigFile": "tsconfig.json",
+  "typescriptChecker": {
+    "prioritizePerformanceOverAccuracy": true,
+    "files": [
+      "src/server/NimGame.ts",
+      "src/server/PlayerList.ts"
+    ]
+  },
+  "mutate": [
+    "src/server/NimGame.ts",
+    "src/server/PlayerList.ts"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "allowConsoleColors": true,
+  "checkerNodeArgs": [],
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "allowEmojis": false,
+    "logTests": true,
+    "maxTestsToLog": 3,
+    "reportTests": true,
+    "reportMutants": true,
+    "reportScoreTable": true
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "dryRunOnly": false,
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "ignorePatterns": [],
+  "ignoreStatic": false,
+  "incremental": false,
+  "incrementalFile": "reports/stryker-incremental.json",
+  "force": false,
+  "inPlace": false,
+  "maxConcurrentTestRunners": 9007199254740991,
+  "maxTestRunnerReuse": 0,
+  "mutator": {
+    "plugins": null,
+    "excludedMutations": []
+  },
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "appendPlugins": [],
+  "htmlReporter": {
+    "fileName": "reports/mutation/mutation.html"
+  },
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "disableTypeChecks": true,
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true,
+  "testRunnerNodeArgs": [],
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "dryRunTimeoutMinutes": 5,
+  "warnings": true,
+  "disableBail": false,
+  "allowEmpty": false,
+  "ignorers": []
+}
+22:04:54 (2768) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\node_modules\@stryker-mutator
+22:04:54 (2768) DEBUG PluginLoader Loading plugin "@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+22:04:54 (2768) DEBUG PluginLoader Loading plugin "@stryker-mutator/typescript-checker" (matched with expression @stryker-mutator/*)
+22:04:54 (2768) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:04:54 (2768) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:04:54 (2768) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:04:55 (2768) DEBUG MetaSchemaBuilder Contributing 2 schemas from plugins to options validation.
+22:04:55 (2768) ERROR OptionsValidator Config option "typescriptChecker" must NOT have additional properties
+22:04:55 (2768) ERROR Stryker Please correct this configuration error and try again.
+22:05:35 (28260) DEBUG ConfigReader Loading config from stryker.config.json
+22:05:35 (28260) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information",
+  "packageManager": "npm",
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress",
+    "dashboard"
+  ],
+  "testRunner": "jest",
+  "jest": {
+    "configFile": "jest.config.cjs"
+  },
+  "coverageAnalysis": "perTest",
+  "checkers": [
+    "typescript"
+  ],
+  "tsconfigFile": "tsconfig.json",
+  "mutate": [
+    "src/server/NimGame.ts",
+    "src/server/PlayerList.ts"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "allowConsoleColors": true,
+  "checkerNodeArgs": [],
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "allowEmojis": false,
+    "logTests": true,
+    "maxTestsToLog": 3,
+    "reportTests": true,
+    "reportMutants": true,
+    "reportScoreTable": true
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "dryRunOnly": false,
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "ignorePatterns": [],
+  "ignoreStatic": false,
+  "incremental": false,
+  "incrementalFile": "reports/stryker-incremental.json",
+  "force": false,
+  "inPlace": false,
+  "maxConcurrentTestRunners": 9007199254740991,
+  "maxTestRunnerReuse": 0,
+  "mutator": {
+    "plugins": null,
+    "excludedMutations": []
+  },
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "appendPlugins": [],
+  "htmlReporter": {
+    "fileName": "reports/mutation/mutation.html"
+  },
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "disableTypeChecks": true,
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true,
+  "testRunnerNodeArgs": [],
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "dryRunTimeoutMinutes": 5,
+  "warnings": true,
+  "disableBail": false,
+  "allowEmpty": false,
+  "ignorers": []
+}
+22:05:35 (28260) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\node_modules\@stryker-mutator
+22:05:35 (28260) DEBUG PluginLoader Loading plugin "@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+22:05:35 (28260) DEBUG PluginLoader Loading plugin "@stryker-mutator/typescript-checker" (matched with expression @stryker-mutator/*)
+22:05:35 (28260) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:05:35 (28260) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:05:35 (28260) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:05:35 (28260) DEBUG MetaSchemaBuilder Contributing 2 schemas from plugins to options validation.
+22:05:36 (28260) INFO ProjectReader Found 2 of 28 file(s) to be mutated.
+22:05:36 (28260) DEBUG ProjectReader All input files: [
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.eslintrc.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.gitignore",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\jest.config.cjs",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\next-env.d.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\next.config.mjs",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\package-lock.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\package.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\public\\next.svg",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\public\\vercel.svg",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\README.md",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\favicon.ico",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\globals.css",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\layout.tsx",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\page.module.css",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\page.tsx",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\Clock.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimController.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.spec.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.spec.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\server-new.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\server.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\ServerController.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\shared\\types-old.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\shared\\types.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\stryker.config.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\tsconfig.json"
+]
+22:05:36 (28260) DEBUG ProjectReader Files to mutate: [
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.ts"
+]
+22:05:36 (28260) DEBUG TemporaryDirectory Using temp directory "C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp"
+22:05:36 (28260) DEBUG Instrumenter Instrumenting 2 source files with mutants
+22:05:36 (28260) DEBUG Instrumenter Instrumented src\server\NimGame.ts (44 mutant(s))
+22:05:36 (28260) DEBUG Instrumenter Instrumented src\server\PlayerList.ts (21 mutant(s))
+22:05:36 (28260) INFO Instrumenter Instrumented 2 source file(s) with 65 mutant(s)
+22:05:36 (28260) DEBUG TSConfigPreprocessor Rewriting file ProjectFile {
+  fs: [FileSystem],
+  name: 'C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\tsconfig.json',
+  mutate: false
+}
+22:05:36 (28260) INFO ConcurrencyTokenProvider Creating 4 checker process(es) and 3 test runner process(es).
+22:05:36 (28260) DEBUG ChildProcessProxy Started CheckerWorker in worker process 0 with pid 31368 
+22:05:36 (28260) DEBUG ChildProcessProxy Started CheckerWorker in worker process 1 with pid 20492 
+22:05:37 (31368) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:05:37 (31368) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:05:37 (31368) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:05:37 (20492) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:05:37 (20492) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:05:37 (20492) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:05:41 (28260) DEBUG Stryker Not removing the temp dir because an error occurred
+22:05:41 (28260) ERROR Stryker Unexpected error occurred while running Stryker StrykerError: Error: An error occurred during initialization of the "typescript" checker. Inner error: Error: Typescript error(s) found in dry run compilation: src/server/server-new.ts(102,1): error TS1005: '}' expected.
+
+Error: Typescript error(s) found in dry run compilation: src/server/server-new.ts(102,1): error TS1005: '}' expected.
+
+    at TypescriptChecker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/typescript-checker/dist/src/typescript-checker.js:48:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CheckerWorker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/checker/checker-worker.js:13:17)
+    at async ChildProcessProxyWorker.handleCall (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy-worker.js:85:28)
+Error: An error occurred during initialization of the "typescript" checker. Inner error: Error: Typescript error(s) found in dry run compilation: src/server/server-new.ts(102,1): error TS1005: '}' expected.
+
+Error: Typescript error(s) found in dry run compilation: src/server/server-new.ts(102,1): error TS1005: '}' expected.
+
+    at TypescriptChecker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/typescript-checker/dist/src/typescript-checker.js:48:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CheckerWorker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/checker/checker-worker.js:13:17)
+    at async ChildProcessProxyWorker.handleCall (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy-worker.js:85:28)
+    at CheckerWorker.init (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/checker/checker-worker.js:16:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async ChildProcessProxyWorker.handleCall (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy-worker.js:85:28)
+    at ChildProcess.<anonymous> (file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/child-proxy/child-process-proxy.js:122:72)
+    at ChildProcess.emit (node:events:517:28)
+    at emit (node:internal/child_process:944:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  innerError: undefined
+}
+22:05:41 (28260) INFO Stryker This might be a known problem with a solution documented in our troubleshooting guide.
+22:05:41 (28260) INFO Stryker You can find it at https://stryker-mutator.io/docs/stryker-js/troubleshooting/
+22:05:41 (28260) DEBUG ChildProcessProxy Disposing of worker process 31368
+22:05:41 (28260) DEBUG ChildProcessProxy Disposing of worker process 20492
+22:05:41 (28260) DEBUG ChildProcessProxy Kill 20492
+22:05:41 (28260) DEBUG ChildProcessProxy Kill 31368
+22:06:08 (32156) DEBUG ConfigReader Loading config from stryker.config.json
+22:06:08 (32156) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "This config was generated using 'stryker init'. Please take a look at: https://stryker-mutator.io/docs/stryker-js/configuration/ for more information",
+  "packageManager": "npm",
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress",
+    "dashboard"
+  ],
+  "testRunner": "jest",
+  "jest": {
+    "configFile": "jest.config.cjs"
+  },
+  "coverageAnalysis": "perTest",
+  "tsconfigFile": "tsconfig.json",
+  "mutate": [
+    "src/server/NimGame.ts",
+    "src/server/PlayerList.ts"
+  ],
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "allowConsoleColors": true,
+  "checkers": [],
+  "checkerNodeArgs": [],
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "allowEmojis": false,
+    "logTests": true,
+    "maxTestsToLog": 3,
+    "reportTests": true,
+    "reportMutants": true,
+    "reportScoreTable": true
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "dryRunOnly": false,
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "ignorePatterns": [],
+  "ignoreStatic": false,
+  "incremental": false,
+  "incrementalFile": "reports/stryker-incremental.json",
+  "force": false,
+  "inPlace": false,
+  "maxConcurrentTestRunners": 9007199254740991,
+  "maxTestRunnerReuse": 0,
+  "mutator": {
+    "plugins": null,
+    "excludedMutations": []
+  },
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "appendPlugins": [],
+  "htmlReporter": {
+    "fileName": "reports/mutation/mutation.html"
+  },
+  "jsonReporter": {
+    "fileName": "reports/mutation/mutation.json"
+  },
+  "disableTypeChecks": true,
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": true,
+  "testRunnerNodeArgs": [],
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "dryRunTimeoutMinutes": 5,
+  "warnings": true,
+  "disableBail": false,
+  "allowEmpty": false,
+  "ignorers": []
+}
+22:06:08 (32156) DEBUG PluginLoader Loading @stryker-mutator/* from C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\node_modules\@stryker-mutator
+22:06:08 (32156) DEBUG PluginLoader Loading plugin "@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+22:06:08 (32156) DEBUG PluginLoader Loading plugin "@stryker-mutator/typescript-checker" (matched with expression @stryker-mutator/*)
+22:06:08 (32156) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:08 (32156) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:08 (32156) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:09 (32156) DEBUG MetaSchemaBuilder Contributing 2 schemas from plugins to options validation.
+22:06:09 (32156) INFO ProjectReader Found 2 of 28 file(s) to be mutated.
+22:06:09 (32156) DEBUG ProjectReader All input files: [
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.eslintrc.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.gitignore",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\jest.config.cjs",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\next-env.d.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\next.config.mjs",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\package-lock.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\package.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\public\\next.svg",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\public\\vercel.svg",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\README.md",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\favicon.ico",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\globals.css",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\layout.tsx",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\page.module.css",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\app\\page.tsx",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\Clock.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimController.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.spec.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.spec.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\server-new.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\server.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\ServerController.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\shared\\types-old.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\shared\\types.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\stryker.config.json",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\tsconfig.json"
+]
+22:06:09 (32156) DEBUG ProjectReader Files to mutate: [
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\NimGame.ts",
+  "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\src\\server\\PlayerList.ts"
+]
+22:06:09 (32156) DEBUG TemporaryDirectory Using temp directory "C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp"
+22:06:09 (32156) DEBUG Instrumenter Instrumenting 2 source files with mutants
+22:06:09 (32156) DEBUG Instrumenter Instrumented src\server\NimGame.ts (44 mutant(s))
+22:06:09 (32156) DEBUG Instrumenter Instrumented src\server\PlayerList.ts (21 mutant(s))
+22:06:09 (32156) INFO Instrumenter Instrumented 2 source file(s) with 65 mutant(s)
+22:06:09 (32156) DEBUG TSConfigPreprocessor Rewriting file ProjectFile {
+  fs: [FileSystem],
+  name: 'C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\tsconfig.json',
+  mutate: false
+}
+22:06:09 (32156) INFO ConcurrencyTokenProvider Creating 7 test runner process(es).
+22:06:09 (32156) DEBUG ChildProcessProxy Started CheckerWorker in worker process 0 with pid 6124 
+22:06:10 (6124) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:10 (6124) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:10 (6124) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:11 (32156) DEBUG Sandbox Creating a sandbox for files in C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781
+22:06:11 (32156) DEBUG Sandbox Start symlink node_modules
+22:06:11 (32156) DEBUG Sandbox Create symlink from C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\node_modules to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781\node_modules
+22:06:11 (32156) DEBUG BroadcastReporter Broadcasting to reporters ["html","clear-text","progress","dashboard"]
+22:06:11 (32156) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 0 with pid 20428 
+22:06:11 (32156) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 1 with pid 30972 
+22:06:12 (20428) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:12 (20428) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:12 (20428) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:12 (30972) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:12 (30972) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:12 (30972) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:12 (30972) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781
+22:06:12 (20428) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781
+22:06:12 (30972) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+22:06:12 (20428) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+22:06:13 (20428) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:06:13 (30972) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:06:13 (30972) DEBUG CustomJestConfigLoader Read config from "jest.config.cjs" (used native `readInitialOptions` from jest-config).
+22:06:13 (30972) DEBUG JestTestRunner Merging file-based config {
+  "preset": "ts-jest/presets/js-with-ts-esm",
+  "transformIgnorePatterns": [
+    "/node_modules/(?!nanoid)"
+  ],
+  "rootDir": "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+22:06:13 (20428) DEBUG CustomJestConfigLoader Read config from "jest.config.cjs" (used native `readInitialOptions` from jest-config).
+22:06:13 (20428) DEBUG JestTestRunner Merging file-based config {
+  "preset": "ts-jest/presets/js-with-ts-esm",
+  "transformIgnorePatterns": [
+    "/node_modules/(?!nanoid)"
+  ],
+  "rootDir": "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+22:06:13 (32156) INFO DryRunExecutor Starting initial test run (jest test runner with "perTest" coverage analysis). This may take a while.
+22:06:13 (32156) DEBUG DryRunExecutor Using timeout of 300000 ms.
+22:06:13 (32156) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+22:06:13 (32156) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 2 with pid 24348 
+22:06:13 (32156) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 3 with pid 19096 
+22:06:13 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts","C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testLocationInResults":true}
+22:06:14 (19096) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:14 (19096) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:14 (19096) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:14 (24348) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:14 (24348) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:14 (24348) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:14 (19096) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781
+22:06:14 (24348) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781
+22:06:14 (19096) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+22:06:14 (24348) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+22:06:15 (19096) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:06:15 (19096) DEBUG CustomJestConfigLoader Read config from "jest.config.cjs" (used native `readInitialOptions` from jest-config).
+22:06:15 (19096) DEBUG JestTestRunner Merging file-based config {
+  "preset": "ts-jest/presets/js-with-ts-esm",
+  "transformIgnorePatterns": [
+    "/node_modules/(?!nanoid)"
+  ],
+  "rootDir": "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+22:06:15 (32156) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 4 with pid 16104 
+22:06:15 (24348) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:06:15 (24348) DEBUG CustomJestConfigLoader Read config from "jest.config.cjs" (used native `readInitialOptions` from jest-config).
+22:06:15 (24348) DEBUG JestTestRunner Merging file-based config {
+  "preset": "ts-jest/presets/js-with-ts-esm",
+  "transformIgnorePatterns": [
+    "/node_modules/(?!nanoid)"
+  ],
+  "rootDir": "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+22:06:15 (32156) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 5 with pid 13532 
+22:06:16 (16104) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:16 (16104) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:16 (16104) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:16 (13532) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:16 (13532) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:16 (13532) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:16 (16104) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781
+22:06:16 (13532) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781
+22:06:16 (16104) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+22:06:17 (13532) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+22:06:17 (16104) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:06:17 (16104) DEBUG CustomJestConfigLoader Read config from "jest.config.cjs" (used native `readInitialOptions` from jest-config).
+22:06:17 (16104) DEBUG JestTestRunner Merging file-based config {
+  "preset": "ts-jest/presets/js-with-ts-esm",
+  "transformIgnorePatterns": [
+    "/node_modules/(?!nanoid)"
+  ],
+  "rootDir": "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+22:06:17 (32156) DEBUG ChildProcessProxy Started ChildProcessTestRunnerWorker in worker process 6 with pid 29616 
+22:06:17 (13532) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:06:17 (13532) DEBUG CustomJestConfigLoader Read config from "jest.config.cjs" (used native `readInitialOptions` from jest-config).
+22:06:17 (13532) DEBUG JestTestRunner Merging file-based config {
+  "preset": "ts-jest/presets/js-with-ts-esm",
+  "transformIgnorePatterns": [
+    "/node_modules/(?!nanoid)"
+  ],
+  "rootDir": "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+22:06:17 (29616) DEBUG PluginLoader Loading plugin @stryker-mutator/jest-runner
+22:06:17 (29616) DEBUG PluginLoader Loading plugin @stryker-mutator/typescript-checker
+22:06:17 (29616) DEBUG PluginLoader Loading plugin file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/node_modules/@stryker-mutator/core/dist/src/reporters/index.js
+22:06:18 (29616) DEBUG ChildProcessProxyWorker Changing current working directory for this process to C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp\sandbox8125781
+22:06:18 (29616) DEBUG jestTestAdapterFactory Detected Jest version 29.7.0
+22:06:18 (29616) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:06:18 (29616) DEBUG CustomJestConfigLoader Read config from "jest.config.cjs" (used native `readInitialOptions` from jest-config).
+22:06:18 (29616) DEBUG JestTestRunner Merging file-based config {
+  "preset": "ts-jest/presets/js-with-ts-esm",
+  "transformIgnorePatterns": [
+    "/node_modules/(?!nanoid)"
+  ],
+  "rootDir": "C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781"
+}
+      with custom config {}
+      and default (internal) stryker config {
+  "collectCoverage": false,
+  "verbose": false,
+  "notify": false,
+  "bail": false,
+  "reporters": []
+}
+22:06:25 (32156) INFO DryRunExecutor Initial test run succeeded. Ran 8 tests in 12 seconds (net 32 ms, overhead 11995 ms).
+22:06:25 (32156) DEBUG ChildProcessProxy Disposing of worker process 6124
+22:06:25 (32156) DEBUG TimeoutDecorator Starting timeout timer (17032.5 ms) for a test run
+22:06:25 (32156) DEBUG TimeoutDecorator Starting timeout timer (17032.5 ms) for a test run
+22:06:25 (32156) DEBUG TimeoutDecorator Starting timeout timer (17032.5 ms) for a test run
+22:06:25 (32156) DEBUG TimeoutDecorator Starting timeout timer (17023.5 ms) for a test run
+22:06:25 (32156) DEBUG TimeoutDecorator Starting timeout timer (17023.5 ms) for a test run
+22:06:25 (32156) DEBUG TimeoutDecorator Starting timeout timer (17023.5 ms) for a test run
+22:06:25 (32156) DEBUG TimeoutDecorator Starting timeout timer (17023.5 ms) for a test run
+22:06:25 (32156) DEBUG ChildProcessProxy Kill 6124
+22:06:25 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:25 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:25 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:25 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:25 (13532) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:25 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:25 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:36 (32156) DEBUG TimeoutDecorator Starting timeout timer (17023.5 ms) for a test run
+22:06:36 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:36 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:36 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:36 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:36 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:36 (32156) DEBUG TimeoutDecorator Starting timeout timer (16998 ms) for a test run
+22:06:36 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)"}
+22:06:36 (32156) DEBUG TimeoutDecorator Starting timeout timer (16996.5 ms) for a test run
+22:06:36 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)"}
+22:06:36 (32156) DEBUG TimeoutDecorator Starting timeout timer (17005.5 ms) for a test run
+22:06:36 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should switch to the next player after taking sticks)"}
+22:06:37 (32156) DEBUG TimeoutDecorator Starting timeout timer (17004 ms) for a test run
+22:06:37 (13532) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should end the game when the pile is empty)"}
+22:06:38 (32156) DEBUG TimeoutDecorator Starting timeout timer (17004 ms) for a test run
+22:06:38 (32156) DEBUG TimeoutDecorator Starting timeout timer (17004 ms) for a test run
+22:06:38 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should end the game when the pile is empty)"}
+22:06:38 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should end the game when the pile is empty)"}
+22:06:38 (32156) DEBUG TimeoutDecorator Starting timeout timer (17004 ms) for a test run
+22:06:38 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should end the game when the pile is empty)"}
+22:06:38 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:38 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:38 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:38 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:38 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:38 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:38 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:38 (13532) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:39 (32156) DEBUG TimeoutDecorator Starting timeout timer (17019 ms) for a test run
+22:06:39 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should throw an error if the number of sticks to take is invalid)"}
+22:06:39 (32156) DEBUG TimeoutDecorator Starting timeout timer (17019 ms) for a test run
+22:06:39 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:39 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should throw an error if the number of sticks to take is invalid)"}
+22:06:39 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:39 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:39 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:39 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:39 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:39 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:39 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:40 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:40 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:40 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:40 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:40 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:40 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:40 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:40 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:40 (13532) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:40 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:40 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:40 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:40 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:40 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:41 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:41 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:41 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:41 (32156) DEBUG TimeoutDecorator Starting timeout timer (17020.5 ms) for a test run
+22:06:41 (32156) DEBUG TimeoutDecorator Starting timeout timer (17019 ms) for a test run
+22:06:41 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:41 (13532) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)"}
+22:06:41 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should throw an error if the number of sticks to take is invalid)"}
+22:06:41 (32156) DEBUG TimeoutDecorator Starting timeout timer (17019 ms) for a test run
+22:06:41 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should throw an error if the number of sticks to take is invalid)"}
+22:06:41 (32156) DEBUG TimeoutDecorator Starting timeout timer (16996.5 ms) for a test run
+22:06:41 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\NimGame.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should end the game when the pile is empty)"}
+22:06:41 (32156) DEBUG TimeoutDecorator Starting timeout timer (17043 ms) for a test run
+22:06:41 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should add a player to the list)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:42 (32156) DEBUG TimeoutDecorator Starting timeout timer (17043 ms) for a test run
+22:06:42 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should initialize a new game with the correct pile and limit)|(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should add a player to the list)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:42 (32156) DEBUG TimeoutDecorator Starting timeout timer (17034 ms) for a test run
+22:06:42 (32156) DEBUG TimeoutDecorator Starting timeout timer (17034 ms) for a test run
+22:06:42 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should add a player to the list)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:42 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should add a player to the list)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:42 (32156) DEBUG TimeoutDecorator Starting timeout timer (17034 ms) for a test run
+22:06:42 (32156) DEBUG TimeoutDecorator Starting timeout timer (17034 ms) for a test run
+22:06:42 (32156) DEBUG TimeoutDecorator Starting timeout timer (17034 ms) for a test run
+22:06:42 (13532) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should add a player to the list)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:42 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should add a player to the list)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:42 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should add a player to the list)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:43 (32156) DEBUG TimeoutDecorator Starting timeout timer (17032.5 ms) for a test run
+22:06:43 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should add a player to the list)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:43 (32156) DEBUG TimeoutDecorator Starting timeout timer (17004 ms) for a test run
+22:06:43 (32156) DEBUG TimeoutDecorator Starting timeout timer (16999.5 ms) for a test run
+22:06:43 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(PlayerList should add a player to the list)"}
+22:06:43 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:43 (32156) DEBUG TimeoutDecorator Starting timeout timer (17028 ms) for a test run
+22:06:43 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:43 (32156) DEBUG TimeoutDecorator Starting timeout timer (17028 ms) for a test run
+22:06:43 (32156) DEBUG TimeoutDecorator Starting timeout timer (17028 ms) for a test run
+22:06:43 (13532) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:43 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:43 (32156) DEBUG TimeoutDecorator Starting timeout timer (17028 ms) for a test run
+22:06:43 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should add a player to the game)|(NimGame should switch to the next player after taking sticks)|(NimGame should throw an error if the number of sticks to take is invalid)|(NimGame should end the game when the pile is empty)|(PlayerList should make the first player added the initial current player)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:44 (32156) DEBUG TimeoutDecorator Starting timeout timer (16999.5 ms) for a test run
+22:06:44 (13532) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should end the game when the pile is empty)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:44 (32156) DEBUG TimeoutDecorator Starting timeout timer (16999.5 ms) for a test run
+22:06:44 (24348) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should end the game when the pile is empty)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:44 (32156) DEBUG TimeoutDecorator Starting timeout timer (16999.5 ms) for a test run
+22:06:44 (20428) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should end the game when the pile is empty)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:45 (32156) DEBUG TimeoutDecorator Starting timeout timer (16999.5 ms) for a test run
+22:06:45 (29616) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should end the game when the pile is empty)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:45 (32156) DEBUG TimeoutDecorator Starting timeout timer (16999.5 ms) for a test run
+22:06:45 (30972) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should end the game when the pile is empty)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:45 (32156) DEBUG TimeoutDecorator Starting timeout timer (16999.5 ms) for a test run
+22:06:45 (32156) DEBUG TimeoutDecorator Starting timeout timer (16999.5 ms) for a test run
+22:06:45 (19096) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should end the game when the pile is empty)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:45 (16104) TRACE JestTestRunner Invoking Jest with config {"fileNamesUnderTest":["C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781\\src\\server\\PlayerList.ts"],"jestConfig":{"preset":"ts-jest/presets/js-with-ts-esm","transformIgnorePatterns":["/node_modules/(?!nanoid)"],"rootDir":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\.stryker-tmp\\sandbox8125781","collectCoverage":false,"verbose":false,"notify":false,"bail":false,"reporters":[],"globals":{"__strykerGlobalNamespace__":"__stryker__"},"testEnvironment":"C:\\Users\\wand\\OneDrive\\Documents\\Work\\Courses\\CS 4530 My Code Workspace\\2024-05-28 nim-sockets-webapp-1\\node_modules\\@stryker-mutator\\jest-runner\\dist\\src\\jest-plugins\\jest-environment-generic.cjs"},"testNamePattern":"(NimGame should switch to the next player after taking sticks)|(NimGame should end the game when the pile is empty)|(PlayerList should advance the current player to the next player in the list)"}
+22:06:46 (32156) DEBUG HtmlReporter Using file "reports/mutation/mutation.html"
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:34:13
+22:06:46 (32156) DEBUG ClearTextReporter -           if (this._players.nPlayers >= 2) {       
+22:06:46 (32156) DEBUG ClearTextReporter +           if (this._players.nPlayers > 2) {       
+22:06:46 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:46 (32156) DEBUG ClearTextReporter 
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:34:13
+22:06:46 (32156) DEBUG ClearTextReporter -           if (this._players.nPlayers >= 2) {       
+22:06:46 (32156) DEBUG ClearTextReporter +           if (false) {       
+22:06:46 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:46 (32156) DEBUG ClearTextReporter 
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:22:54
+22:06:46 (32156) DEBUG ClearTextReporter -       constructor(initPile: number, turnLimit: number) {
+22:06:46 (32156) DEBUG ClearTextReporter -           this._pile = initPile;
+22:06:46 (32156) DEBUG ClearTextReporter -           this._limit = turnLimit;
+22:06:46 (32156) DEBUG ClearTextReporter -           this._players = new PlayerList();        
+22:06:46 (32156) DEBUG ClearTextReporter -       }
+22:06:46 (32156) DEBUG ClearTextReporter +       constructor(initPile: number, turnLimit: number) {}
+22:06:46 (32156) DEBUG ClearTextReporter Killed by: NimGame should initialize a new game with the correct pile and limit
+22:06:46 (32156) DEBUG ClearTextReporter 
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] BooleanLiteral
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:12:34
+22:06:46 (32156) DEBUG ClearTextReporter -       private _gameOver: boolean = false;
+22:06:46 (32156) DEBUG ClearTextReporter +       private _gameOver: boolean = true;
+22:06:46 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:46 (32156) DEBUG ClearTextReporter 
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] BooleanLiteral
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:11:40
+22:06:46 (32156) DEBUG ClearTextReporter -       private _gameInProgress: boolean = false;
+22:06:46 (32156) DEBUG ClearTextReporter +       private _gameInProgress: boolean = true;
+22:06:46 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:46 (32156) DEBUG ClearTextReporter 
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:29:45
+22:06:46 (32156) DEBUG ClearTextReporter -       public addPlayer(player: IPlayer): void {
+22:06:46 (32156) DEBUG ClearTextReporter -           this._players.addPlayer(player);
+22:06:46 (32156) DEBUG ClearTextReporter -           // if this is the first player added, make them the first player to play
+22:06:46 (32156) DEBUG ClearTextReporter -           // .addPlayer() sets the first player to be the current player
+22:06:46 (32156) DEBUG ClearTextReporter -           // if there are two players, start the game
+22:06:46 (32156) DEBUG ClearTextReporter -           if (this._players.nPlayers >= 2) {       
+22:06:46 (32156) DEBUG ClearTextReporter -               this._gameInProgress = true;
+22:06:46 (32156) DEBUG ClearTextReporter -           }
+22:06:46 (32156) DEBUG ClearTextReporter -       }
+22:06:46 (32156) DEBUG ClearTextReporter +       public addPlayer(player: IPlayer): void {}
+22:06:46 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:46 (32156) DEBUG ClearTextReporter 
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:34:13
+22:06:46 (32156) DEBUG ClearTextReporter -           if (this._players.nPlayers >= 2) {       
+22:06:46 (32156) DEBUG ClearTextReporter +           if (true) {       
+22:06:46 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:46 (32156) DEBUG ClearTextReporter 
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:34:13
+22:06:46 (32156) DEBUG ClearTextReporter -           if (this._players.nPlayers >= 2) {       
+22:06:46 (32156) DEBUG ClearTextReporter +           if (this._players.nPlayers < 2) {       
+22:06:46 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:46 (32156) DEBUG ClearTextReporter 
+22:06:46 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:46 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:44:52
+22:06:47 (32156) DEBUG ClearTextReporter -       public getCurrentPlayer(): IPlayer | undefined {   
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._players.currentPlayer;
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       public getCurrentPlayer(): IPlayer | undefined {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:51:30
+22:06:47 (32156) DEBUG ClearTextReporter -       public getPile(): number {
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._pile;
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       public getPile(): number {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should initialize a new game with the correct pile and limit
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:40:37
+22:06:47 (32156) DEBUG ClearTextReporter -       public getPlayers(): PlayerList {
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._players;
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       public getPlayers(): PlayerList {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BooleanLiteral
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:35:36
+22:06:47 (32156) DEBUG ClearTextReporter -               this._gameInProgress = true;
+22:06:47 (32156) DEBUG ClearTextReporter +               this._gameInProgress = false;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:34:42
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._players.nPlayers >= 2) {       
+22:06:47 (32156) DEBUG ClearTextReporter -               this._gameInProgress = true;
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter +           if (this._players.nPlayers >= 2) {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:59:34
+22:06:47 (32156) DEBUG ClearTextReporter -       public isGameOver(): boolean {
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._pile === 0;
+22:06:47 (32156) DEBUG ClearTextReporter -       }   
+22:06:47 (32156) DEBUG ClearTextReporter +       public isGameOver(): boolean {}   
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should initialize a new game with the correct pile and limit
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:60:16
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._pile === 0;
+22:06:47 (32156) DEBUG ClearTextReporter +           return true;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should initialize a new game with the correct pile and limit
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:69:65
+22:06:47 (32156) DEBUG ClearTextReporter -       public takeSticks(player: IPlayer, numSticks: number): void {
+22:06:47 (32156) DEBUG ClearTextReporter -           if (!this._gameInProgress) {
+22:06:47 (32156) DEBUG ClearTextReporter -               throw new Error("Game not in progress");
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._gameOver) {
+22:06:47 (32156) DEBUG ClearTextReporter -               throw new Error("Game is over");
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter -           if (player !== this._players.currentPlayer) {
+22:06:47 (32156) DEBUG ClearTextReporter -               throw new Error("Not this player's turn");
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter -               throw new Error(`Invalid number of sticks: ${numSticks}`);
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter -           // take the sticks and advance to the next player
+22:06:47 (32156) DEBUG ClearTextReporter -           this._pile -= numSticks;
+22:06:47 (32156) DEBUG ClearTextReporter -           this._players.nextPlayer();
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       public takeSticks(player: IPlayer, numSticks: number): void {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:60:16
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._pile === 0;
+22:06:47 (32156) DEBUG ClearTextReporter +           return false;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should end the game when the pile is empty
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:70:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (!this._gameInProgress) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (true) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:60:16
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._pile === 0;
+22:06:47 (32156) DEBUG ClearTextReporter +           return this._pile !== 0;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should initialize a new game with the correct pile and limit
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BooleanLiteral
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:70:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (!this._gameInProgress) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (this._gameInProgress) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:70:36
+22:06:47 (32156) DEBUG ClearTextReporter -           if (!this._gameInProgress) {
+22:06:47 (32156) DEBUG ClearTextReporter -               throw new Error("Game not in progress");
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter +           if (!this._gameInProgress) {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:73:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._gameOver) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (true) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] StringLiteral
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:71:29
+22:06:47 (32156) DEBUG ClearTextReporter -               throw new Error("Game not in progress");
+22:06:47 (32156) DEBUG ClearTextReporter +               throw new Error("");
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:70:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (!this._gameInProgress) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (false) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:76:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (player !== this._players.currentPlayer) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (true) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (false) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] LogicalOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (numSticks < 1 && numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (numSticks <= 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (true) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (numSticks >= 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:76:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (player !== this._players.currentPlayer) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (player === this._players.currentPlayer) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:55
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter -               throw new Error(`Invalid number of sticks: ${numSticks}`);
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter +           if (numSticks < 1 || numSticks > this._limit) {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:30
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (numSticks < 1 || numSticks >= this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should end the game when the pile is empty
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] StringLiteral
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:80:29
+22:06:47 (32156) DEBUG ClearTextReporter -               throw new Error(`Invalid number of sticks: ${numSticks}`);
+22:06:47 (32156) DEBUG ClearTextReporter +               throw new Error(``);
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] AssignmentOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:83:9
+22:06:47 (32156) DEBUG ClearTextReporter -           this._pile -= numSticks;
+22:06:47 (32156) DEBUG ClearTextReporter +           this._pile += numSticks;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:30
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (numSticks < 1 || false) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should throw an error if the number of sticks to take is invalid
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/NimGame.ts:79:30
+22:06:47 (32156) DEBUG ClearTextReporter -           if (numSticks < 1 || numSticks > this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (numSticks < 1 || numSticks <= this._limit) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:17:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._players.length === 1) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (this._players.length !== 1) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:15:39
+22:06:47 (32156) DEBUG ClearTextReporter -       public addPlayer(player: IPlayer) {
+22:06:47 (32156) DEBUG ClearTextReporter -           this._players.push(player);
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._players.length === 1) {
+22:06:47 (32156) DEBUG ClearTextReporter -               this._currentIndex = 0;
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       public addPlayer(player: IPlayer) {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:9:19
+22:06:47 (32156) DEBUG ClearTextReporter -       constructor() {
+22:06:47 (32156) DEBUG ClearTextReporter -           this._players = [];
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       constructor() {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:17:41
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._players.length === 1) {
+22:06:47 (32156) DEBUG ClearTextReporter -               this._currentIndex = 0;
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter +           if (this._players.length === 1) {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ArrayDeclaration
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:10:25
+22:06:47 (32156) DEBUG ClearTextReporter -           this._players = [];
+22:06:47 (32156) DEBUG ClearTextReporter +           this._players = ["Stryker was here"];
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:17:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._players.length === 1) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (false) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:33:16
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._currentIndex !== undefined? this._players[this._currentIndex] : undefined;
+22:06:47 (32156) DEBUG ClearTextReporter +           return false? this._players[this._currentIndex] : undefined;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:22:27
+22:06:47 (32156) DEBUG ClearTextReporter -       public get nPlayers() { return this._players.length; }
+22:06:47 (32156) DEBUG ClearTextReporter +       public get nPlayers() {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:23:29
+22:06:47 (32156) DEBUG ClearTextReporter -       public get playerList() { return this._players; }
+22:06:47 (32156) DEBUG ClearTextReporter +       public get playerList() {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:32:53
+22:06:47 (32156) DEBUG ClearTextReporter -       public get currentPlayer(): IPlayer | undefined {
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._currentIndex !== undefined? this._players[this._currentIndex] : undefined;
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       public get currentPlayer(): IPlayer | undefined {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:33:16
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._currentIndex !== undefined? this._players[this._currentIndex] : undefined;
+22:06:47 (32156) DEBUG ClearTextReporter +           return this._currentIndex === undefined? this._players[this._currentIndex] : undefined;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should add a player to the game
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:27:51
+22:06:47 (32156) DEBUG ClearTextReporter -       public get currentIndex(): number | undefined { 
+22:06:47 (32156) DEBUG ClearTextReporter -           return this._currentIndex; 
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       public get currentIndex(): number | undefined {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: PlayerList should make the first player added the initial current player
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:38:31
+22:06:47 (32156) DEBUG ClearTextReporter -       public nextPlayer(): void {
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._currentIndex !== undefined) {
+22:06:47 (32156) DEBUG ClearTextReporter -               this._currentIndex = (this._currentIndex + 1) % this.nPlayers;
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter -       
+22:06:47 (32156) DEBUG ClearTextReporter -       }
+22:06:47 (32156) DEBUG ClearTextReporter +       public nextPlayer(): void {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ArithmeticOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:40:34
+22:06:47 (32156) DEBUG ClearTextReporter -               this._currentIndex = (this._currentIndex + 1) % this.nPlayers;
+22:06:47 (32156) DEBUG ClearTextReporter +               this._currentIndex = (this._currentIndex + 1) * this.nPlayers;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ConditionalExpression
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:39:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._currentIndex !== undefined) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (false) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] BlockStatement
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:39:47
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._currentIndex !== undefined) {
+22:06:47 (32156) DEBUG ClearTextReporter -               this._currentIndex = (this._currentIndex + 1) % this.nPlayers;
+22:06:47 (32156) DEBUG ClearTextReporter -           }
+22:06:47 (32156) DEBUG ClearTextReporter +           if (this._currentIndex !== undefined) {}
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] EqualityOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:39:13
+22:06:47 (32156) DEBUG ClearTextReporter -           if (this._currentIndex !== undefined) {
+22:06:47 (32156) DEBUG ClearTextReporter +           if (this._currentIndex === undefined) {
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) DEBUG ClearTextReporter [Killed] ArithmeticOperator
+22:06:47 (32156) DEBUG ClearTextReporter src/server/PlayerList.ts:40:35
+22:06:47 (32156) DEBUG ClearTextReporter -               this._currentIndex = (this._currentIndex + 1) % this.nPlayers;
+22:06:47 (32156) DEBUG ClearTextReporter +               this._currentIndex = (this._currentIndex - 1) % this.nPlayers;
+22:06:47 (32156) DEBUG ClearTextReporter Killed by: NimGame should switch to the next player after taking sticks
+22:06:47 (32156) DEBUG ClearTextReporter 
+22:06:47 (32156) INFO DashboardReporter The report was not send to the dashboard. The dashboard.project and/or dashboard.version values were missing and not detected to be running on a build server.
+22:06:47 (32156) DEBUG MutationTestReportHelper No breaking threshold configured. Won't fail the build no matter how low your mutation score is. Set `thresholds.break` to change this behavior.
+22:06:47 (32156) INFO HtmlReporter Your report can be found at: file:///C:/Users/wand/OneDrive/Documents/Work/Courses/CS%204530%20My%20Code%20Workspace/2024-05-28%20nim-sockets-webapp-1/reports/mutation/mutation.html
+22:06:47 (32156) INFO MutationTestExecutor Done in 38 seconds.
+22:06:47 (32156) DEBUG ChildProcessProxy Disposing of worker process 30972
+22:06:47 (32156) DEBUG ChildProcessProxy Disposing of worker process 20428
+22:06:47 (32156) DEBUG ChildProcessProxy Disposing of worker process 19096
+22:06:47 (32156) DEBUG ChildProcessProxy Disposing of worker process 24348
+22:06:47 (32156) DEBUG ChildProcessProxy Disposing of worker process 29616
+22:06:47 (32156) DEBUG ChildProcessProxy Disposing of worker process 13532
+22:06:47 (32156) DEBUG ChildProcessProxy Disposing of worker process 16104
+22:06:47 (32156) DEBUG ChildProcessProxy Kill 30972
+22:06:47 (32156) DEBUG ChildProcessProxy Kill 20428
+22:06:47 (32156) DEBUG ChildProcessProxy Kill 19096
+22:06:47 (32156) DEBUG ChildProcessProxy Kill 24348
+22:06:47 (32156) DEBUG ChildProcessProxy Kill 29616
+22:06:47 (32156) DEBUG ChildProcessProxy Kill 13532
+22:06:47 (32156) DEBUG ChildProcessProxy Kill 16104
+22:06:47 (32156) DEBUG TemporaryDirectory Deleting stryker temp directory C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 My Code Workspace\2024-05-28 nim-sockets-webapp-1\.stryker-tmp
