@@ -1,8 +1,5 @@
 {
   "name": "nim-sockets-webapp-1",
-  "jest": {
-    "testEnvironment": "jsdom"
-  },
   "version": "0.1.0",
   "private": true,
   "scripts": {

@@ -1,6 +1,6 @@
 import type { Player, IPlayerList } from "../shared/types";
 
-export default class PlayerList implements IPlayerList {
+export default class PlayerList  {
     /** the players in the game, initially empty */
     private _players: Player[];
     private _currentIndex: number | undefined;

@@ -31,16 +31,16 @@ describe("PlayerList", () => {
         playerList.addPlayer(player2);
         playerList.addPlayer(player3);
 
-        playerList.nextPlayer();
+        playerList.advancePlayer();
         expect(playerList.currentIndex).toBe(1);
         expect(playerList.currentPlayer).toBe(player2);
 
-        playerList.nextPlayer();
+        playerList.advancePlayer();
         expect(playerList.currentIndex).toBe(2);
         expect(playerList.currentPlayer).toBe(player3);
 
         // After reaching the end of the list, it should wrap around to the first player
-        playerList.nextPlayer();
+        playerList.advancePlayer();
         expect(playerList.currentIndex).toBe(0);
         expect(playerList.currentPlayer).toBe(player1);
     });
