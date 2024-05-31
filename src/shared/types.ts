@@ -16,7 +16,7 @@ export type PlayerID = string
 export type Player = {
     name: string;
     playerID: string; // unique id for this player
-    socket?: ServerSocket // optional: the server's socket for this client
+    socket: ServerSocket // no, not optional: the server's socket for this client
 }
 
 /** The state of the game, as a data-transfer object */
@@ -47,22 +47,35 @@ export interface IPlayerList {
     advancePlayer(): void;
 }
 
+// protocol:
+// client sends helloFromClient
+// server sends assignID
+// when there are at least two clients, server starts the first game
+// when the game is over, server starts a new game with the same players
+// player[0] always goes first.
+// server sends yourTurn to the current player
+// client sends clientTakesMove
+// sends no response, but moves to next player regardless of whether the move was valid.
 
+// this is the minimal protocol for a game of nim.
+// the player only sees the board when it's his move.
+// we could add other events, like playerWon, playerLost, etc.
 
 
 export interface ServerToClientEvents {
 
+    // nah, don't need this
     // controller announces that a player has joined the game
-    playerJoined: (playerName: string) => void;
+    // playerJoined: (playerName: string) => void;
 
     // controller assigns an id to a client
     assignID: (playerID: string) => void;
 
-    // controller announces winner
-    serverAnnounceWinner: (playerName: string, playerID: string) => void;
+    // // controller announces winner
+    // serverAnnounceWinner: (playerName: string, playerID: string) => void;
 
-    // controller announces that it is starting a new game
-    newGame: (gameNumber:GameNumber) => void;
+    // // controller announces that it is starting a new game
+    // newGame: (gameNumber:GameNumber) => void;
 
     
     // controller tells a client that it is their turn.
@@ -72,18 +85,19 @@ export interface ServerToClientEvents {
     // controller tells a client that it is not their turn
     // notYourTurn: (gameNumber:GameNumber, playerID: Player) => void;
 
-    // controller tells a client that the move they made was invalid
-    // it is still this player's turn
-    invalidMove: (gameNumber:GameNumber, playerID: PlayerID, move: Move) => void;
+    // // controller tells a client that the move they made was invalid
+    // // it is still this player's turn
+    // invalidMove: (gameNumber:GameNumber, playerID: PlayerID, move: Move) => void;
 
-    // controller announces that a player has moved.
-    playerMoved: (gameNumber:GameNumber, player: Player, move: Move, newState: GameState) => void;
+    // // controller announces that a player has moved.
+    // playerMoved: (gameNumber:GameNumber, player: Player, move: Move, newState: GameState) => void;
 
-    // controller announces the winner of the game
-    playerWon: (gameNumber:GameNumber, player: Player) => void;
+    // // controller announces the winner of the game
+    // playerWon: (gameNumber:GameNumber, player: Player) => void;
     
-    // controller announces that there are no more moves left
-    noMoreMoves: () => void;
+    // controller announces that it is shutting down
+    // a player should disconnect.
+    serverHasNoMoreMoves: () => void;
 }
 
 export interface ClientToServerEvents {
@@ -91,15 +105,12 @@ export interface ClientToServerEvents {
     // client requests to join server
     helloFromClient: (clientName: string) => void;
 
-    // client responds to 'newgame' by telling the server it would like to join 
-    // the game; assumes this client is already in the game
-    clientJoinsGame: (clientName: Player) => void;
-
-    // client tells the server it is ready to start a new game
-    clientRequestsStartGame: (clientName: string) => void;
+    // // client responds to 'newgame' by telling the server it would like to join 
+    // // the game; assumes this client is already in the game
+    // clientJoinsGame: (clientName: Player) => void;
 
     // client tells the server its move
-    clientTakesMove: (player:Player, move: Move) => void;
+    clientTakesMove: (move: Move) => void;
 
 }
 

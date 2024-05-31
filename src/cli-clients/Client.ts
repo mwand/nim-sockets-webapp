@@ -18,13 +18,13 @@ type ClientPlayer = {name: string, playerID: PlayerID}
 
 export default class Client {
 
-    private socket: ClientSocket
-        = io("ws://localhost:8080")
+    // the client's view of the socket to the server
+    private socket: ClientSocket = io("ws://localhost:8080")
 
-    private _player: ClientPlayer = {name: "", playerID: ""}
+    private _player: ClientPlayer = {name: "", playerID: "" }
 
-    // take at most 20 moves and then stop
-    private movesLeft: number = 5
+    // take at most this many moves and then stop
+    private movesLeft: number = 10000
 
 
     constructor(
@@ -42,12 +42,13 @@ export default class Client {
         // tell the server our friendly name
         this.socket.emit('helloFromClient', this.clientName);
         console.log(`${this.clientName} sent helloFromClient`)
-        this.socket.emit('clientRequestsStartGame', this.clientName);
+        // no, server starts game automatically 
+        // this.socket.emit('clientRequestsStartGame', this.clientName, this._player.playerID);
     }
 
     private setupEventHandlers() {        
         this.socket.on('yourTurn', this.handleYourTurn);
-        this.socket.on('invalidMove', this.handleInvalidMove);
+        // this.socket.on('invalidMove', this.handleInvalidMove);
         this.socket.on('assignID', this.handleAssignID);
     
     }
@@ -64,19 +65,20 @@ export default class Client {
             return;
         }
         this.movesLeft--;
-        console.log(`${this.clientName} received yourTurn`, gameNumber, boardState)
+        console.log(`${this.clientName} received yourTurn; gameNumber=${gameNumber}, boardState=${boardState}`)
         const move = this.strategy(boardState);
-        console.log(`${this.clientName} sending clientTakesMove`, move)
-        this.socket.emit('clientTakesMove', this._player, move);
+        console.log(`${this.clientName} sending clientTakesMove`, move, '\n')
+        this.socket.emit('clientTakesMove', move);
     }
 
-    private handleInvalidMove = (gameNumber: GameNumber, playerID: PlayerID, move: Move) => {
-        console.log(`${this.clientName} received invalidMove`, gameNumber, move)
-        // 1 is always a legal move
-        const nextMove = 1
-        console.log(`${this.clientName} sending clientTakesMove`, nextMove)
-        this.socket.emit('clientTakesMove', this._player, nextMove);
-    }
+    // not used
+    // private handleInvalidMove = (gameNumber: GameNumber, playerID: PlayerID, move: Move) => {
+    //     console.log(`${this.clientName} received invalidMove`, gameNumber, move)
+    //     // 1 is always a legal move
+    //     const nextMove = 1
+    //     console.log(`${this.clientName} sending clientTakesMove`, nextMove)
+    //     this.socket.emit('clientTakesMove', this._player, nextMove);
+    // }
 
     
 

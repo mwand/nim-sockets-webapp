@@ -72,6 +72,7 @@ export default class NimGame {
 
 
     /** resets the game to the starting state, with the same set of players */
+    /** player[0] always goes first */
     public resetGame(): void {
         this._pile = this._initPile;
         this._gameOver = false;
@@ -129,6 +130,7 @@ export default class NimGame {
         }
         // take the sticks and advance to the next player
         this._pile -= numSticks;
-        this.advanceIndex();
+        // this.advanceIndex()
+        // console.log('advanceIndex: new index is', this._currentIndex);
     }
 }

@@ -7,6 +7,10 @@ export function greedy(gameState:BoardState): Move {
     return Math.min(gameState, 3);
 }
 
+export function illegal(gameState:BoardState): Move {
+    return 0;
+}
+
 // for this, we need client and server to agree on the maxMove,
 // which is currently dynamic.  Needs more thought....
 // export function crazy(boardState:BoardState): Move {
