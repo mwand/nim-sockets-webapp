@@ -4,7 +4,7 @@ import { ServerSocket, ClientToServerEvents, ServerToClientEvents } from '../sha
 import PlayerList from "./PlayerList";
 import NimGame from "./NimGame";
 import { Player, PlayerID } from "../shared/types";
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
 import { start } from "repl";
 
 
@@ -35,35 +35,34 @@ console.log('server.ts: clientNames', game.playerNames)
 httpServer.listen(8080);
 
 // dunno why io has to be 'any'
-function setupEventHandlers(io:any) {
+function setupEventHandlers
+    (io: Server<ClientToServerEvents, ServerToClientEvents>) {
     //(io: Server<ClientToServerEvents, ServerToClientEvents>) {
     console.log('server.ts: Setting up event handlers')
     // here io has an any type.  It should be something like ServerSocket
     // if a client is running
-    io.on("connection", (socket:ServerSocket) => {
+    io.on("connection", (socket: ServerSocket) => {
 
         // receive a message from the client 
         socket.on("helloFromClient",
-            (clientName: string) => {            
+            (clientName: string) => {
                 console.log('\nserver received helloFromClient', clientName)
                 const playerID = nanoid(6);
-                game.addPlayer({ name: clientName, playerID: playerID, socket: socket});
+                game.addPlayer({ name: clientName, playerID: playerID, socket: socket });
                 console.log(`server.ts: ${clientName} assigned ID ${playerID}`)
                 socket.emit('assignID', playerID);
                 console.log('server.ts: clientNames', game.playerNames)
-                io.emit('serverAnnounceNewClient', clientName);
+                // io.emit('serverAnnounceNewClient', clientName);
                 if ((game.nPlayers > 1) && !game.isGameInProgress) {
                     startGame();
                 }
-            })            
-        
+            })
 
-
-       // client takes a turn
-       // we know which client this is: it's the one at the other end of the socket
+        // client takes a turn
+        // we know which client this is: it's the one at the other end of the socket
         socket.on("clientTakesMove",
-            (move: number) => { 
-                const player = getPlayerFromSocket(socket) as Player;               
+            (move: number) => {
+                const player = getPlayerFromSocket(socket) as Player;
                 console.log('\nserver received clientMove', player.name, move)
                 // console.log('server.ts: movesLeft = ', movesLeft)
                 // console.log('game.currentPlayer', game.currentPlayer?.name, game.currentPlayer?.playerID)
@@ -71,14 +70,15 @@ function setupEventHandlers(io:any) {
                     // console.log('entering try block')
                     game.move(player, move);  // throws an error if the move is invalid
                     console.log('server.ts: sticks left', game.getPile())
-                    if (game.isGameOver) { 
-                        handleGameOver(player, move) } 
+                    if (game.isGameOver) {
+                        handleGameOver(player, move)
+                    }
                     else { requestNextMove(socket) }
-                } 
-                catch (errMsg:any) {
-                    console.log('server.ts: clientTakesMove error', player.name, move, errMsg.message)                 
+                }
+                catch (errMsg: any) {
+                    console.log('server.ts: clientTakesMove error', player.name, move, errMsg.message)
                     requestNextMove(socket)
-                }                
+                }
             }
         )
         // Does this work??
@@ -86,10 +86,10 @@ function setupEventHandlers(io:any) {
             // remove this client from the game
             game.removePlayer(socket);
             console.log('server reports disconnect', { nclients: game.nPlayers })
-            console.log('server.ts: clientNames', game.playerNames) 
-    }) 
-    
-    
+            console.log('server.ts: clientNames', game.playerNames)
+        })
+
+
     })
 }
 
@@ -103,17 +103,17 @@ function handleGameOver(player: Player, move: number) {
     }
 }
 
-function requestNextMove(socket:ServerSocket) {
+function requestNextMove(socket: ServerSocket) {
     // wait 1000 ms before sending the next player their turn
     function callback() {
-        game.advanceIndex();    
+        game.advanceIndex();
         const nextPlayer = game.currentPlayer as Player;  // could maybe cast this to Player
         const nextPlayerSocket = nextPlayer?.socket;
         console.log('server.ts: nextPlayer is', nextPlayer?.name, nextPlayer?.playerID)
         nextPlayerSocket?.emit('yourTurn', gameNumber, game.getPile());
     }
     setTimeout(callback, 1000)
-    
+
 }
 
 function startGame() {
@@ -130,7 +130,7 @@ function startGame() {
     player0socket?.emit('yourTurn', gameNumber, game.getPile());
 }
 
-function getPlayerFromSocket(socket:ServerSocket) {
+function getPlayerFromSocket(socket: ServerSocket) {
     return game.getPlayers.find(p => p.socket === socket)
 }
 
