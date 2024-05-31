@@ -1,13 +1,9 @@
 import { createServer as createHttpServer } from "http";
 import { Server } from "socket.io";
 import { ServerSocket, ClientToServerEvents, ServerToClientEvents } from '../shared/types'
-import PlayerList from "./PlayerList";
 import NimGame from "./NimGame";
-import { Player, PlayerID } from "../shared/types";
+import { Player } from "../shared/types";
 import { nanoid } from 'nanoid';
-import { start } from "repl";
-
-
 
 
 // only listen to requests from localhost:3000.  Not sure if this is necessary
@@ -31,19 +27,15 @@ let serverGamesRemaining = 100;
 console.log('server setting up event handlers')
 setupEventHandlers(io);
 console.log('server.ts: Listening on port 8080')
-console.log('server.ts: clientNames', game.playerNames)
 httpServer.listen(8080);
 
 // dunno why io has to be 'any'
 function setupEventHandlers
     (io: Server<ClientToServerEvents, ServerToClientEvents>) {
-    //(io: Server<ClientToServerEvents, ServerToClientEvents>) {
     console.log('server.ts: Setting up event handlers')
-    // here io has an any type.  It should be something like ServerSocket
-    // if a client is running
     io.on("connection", (socket: ServerSocket) => {
 
-        // receive a message from the client 
+        // receive hello from the client 
         socket.on("helloFromClient",
             (clientName: string) => {
                 console.log('\nserver received helloFromClient', clientName)
@@ -81,7 +73,7 @@ function setupEventHandlers
                 }
             }
         )
-        // Does this work??
+  
         socket.on("disconnect", () => {
             // remove this client from the game
             game.removePlayer(socket);
