@@ -27,7 +27,7 @@ export default class NimController
 
     /** the current board */
     private nim: NimGame;
-    private get gameState() { return this.nim.getPile(); }
+    private get gameState() { return this.nim.pile(); }
 
     private gameNumber = 0;
     private maxGameNumber = 1000;

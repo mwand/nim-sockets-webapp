@@ -19,12 +19,12 @@ describe('NimGame', () => {
     });
 
     it('should initialize a new game with the correct pile and limit', () => {
-        expect(nimGame.getPile()).toBe(10);
+        expect(nimGame.pile()).toBe(10);
         expect(nimGame.isGameOver).toBe(false);
     });
 
     it('should add players to the game', () => {   
-        const players = nimGame.getPlayers;
+        const players = nimGame.players;
         expect(players.length).toBe(3);
         expect(players).toContain(player1);
     });
@@ -37,7 +37,7 @@ describe('NimGame', () => {
     
     it('should switch to the next player after taking sticks', () => {
         nimGame.resetGame();
-        expect(nimGame.getPile()).toBe(10);
+        expect(nimGame.pile()).toBe(10);
         expect(nimGame.currentPlayer).toBe(player1);
         nimGame.move(player1, 1);
         expect(nimGame.currentPlayer).toBe(player2);
@@ -45,7 +45,7 @@ describe('NimGame', () => {
         expect(nimGame.currentPlayer).toBe(player3);
         nimGame.move(player3, 1);
         expect(nimGame.currentPlayer).toBe(player1);
-        expect(nimGame.getPile()).toBe(6);
+        expect(nimGame.pile()).toBe(6);
        
     });
 

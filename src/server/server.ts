@@ -19,14 +19,16 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents>
 
 // `game` is the single source of truth for the game state
 const game = new NimGame(20, 3);
-let gameNumber = 0  // dunno whether this should be here or in serverController.
+// we'll have one controller for each client, but they will *share*
+// the same game.
+let gameNumber = 0  // this should be in NimGame.
 
 console.log('server.ts: Listening on port 8080')
 httpServer.listen(8080);
 // setupEventHandlers(io);
 io.on("connection", (socket: ServerSocket) => {
     new ServerController(game, io, socket)
-}
+})
 
 
 

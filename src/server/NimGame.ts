@@ -5,7 +5,13 @@ type PlayerList = Player[]
  * Represents a game of Nim.
  * initialized to beginning of game
  */
-export default class NimGame {  
+export default class NimGame {
+    
+    private _gameNumber = 0  
+    // incremented by this.resetGame
+
+    public get gameNumber(): number {return this._gameNumber}
+    
 
     /** the number of sticks a player can take on their turn */
     private _turnLimit: number;
@@ -36,7 +42,7 @@ export default class NimGame {
     }
 
     /** get the players */
-    public get getPlayers(): PlayerList {
+    public get players(): PlayerList {
         return this._players;
     }
 
@@ -77,6 +83,7 @@ export default class NimGame {
         this._pile = this._initPile;
         this._gameOver = false;
         this._gameInProgress = true;
+        this._gameNumber++
         if (this._players.length > 0) {
             this._currentIndex = 0;
         } else throw new Error('No players in the game')
@@ -86,7 +93,7 @@ export default class NimGame {
      * Gets the current number of sticks in the pile.
      * @returns The current number of sticks in the pile.
      */
-    public getPile(): number {
+    public pile(): number {
         return this._pile;
     }
 
