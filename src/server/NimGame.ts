@@ -73,11 +73,17 @@ export default class NimGame implements INimGame {
     public get nPlayers() { return this._players.nPlayers; }
 
     /** resets the game to the starting state, with the same set of players */
-    // start the game by sending the first player their turn.
+    // start the game by sending the first player their turn. Also tells 
+    // each player that the game has started.
     public startGame(player:Player): void {
         this._gameNumber++
         this._pile = this._initPile;
-        this._gameInProgress = true;
+        this._gameInProgress = true; 
+        // tell each player that the game has started       
+        this._players.players.forEach(p => {
+            p.socket.emit('newGame', this._gameNumber);
+        })
+        // tell the first player that it's their turn
         player.socket.emit('yourTurn', this._gameNumber, this._pile);
     }
 
@@ -104,10 +110,6 @@ export default class NimGame implements INimGame {
             console.log('game not in progress')
             throw new Error("No game in progress");
         }
-        // if (this._gameOver) {
-        //     console.log('game over')
-        //     throw new Error("Game is over");
-        // }
         if (player.playerID !== this._players.currentPlayer?.playerID) {
             console.log('not this player\'s turn')
             console.log('player', player.name, player.playerID);
@@ -118,7 +120,6 @@ export default class NimGame implements INimGame {
         }
         if (numSticks < 1 || numSticks > this._turnLimit) {
             // if the move is invalid, report it and go on to the next player
-            console.log('invalid number of sticks')
             this._players.advancePlayer()
             return {
                 moveAccepted: false,

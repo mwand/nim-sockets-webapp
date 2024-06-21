@@ -48,7 +48,7 @@ export default class ServerController {
         console.log(`controller.ts: ${clientName} assigned ID ${playerID}`)
         // tell the client their ID
         this._socket.emit('assignID', playerID);
-        this._io.emit('serverAnnounceNewClient', clientName);
+        this._io.emit('serverAnnounceNewClient', clientName, playerID);
         // addPlayer starts the game as soon as there are two players
         this._game.addPlayer(this._player);
     }
@@ -59,8 +59,15 @@ export default class ServerController {
     private clientTakesMoveHandler(move: number): void {
         const player = this._player as Player
         console.log('\nserver received clientMove', player?.name, move)
-        const { moveAccepted, isGameOver, nextPlayer } = this._game.move(player, move);
-        console.log('controller.ts: sticks left', this._game.pile())
+        const { moveAccepted, isGameOver, nextPlayer, resultingBoardState } = this._game.move(player, move);
+        this._io.emit('serverAnnouncePlayerMoved', 
+            player.name, move, resultingBoardState, nextPlayer.name)
+        if (moveAccepted) {
+                console.log(`controller.ts: ${player.name} moved ${move} sticks, leaving ${resultingBoardState} sticks in the pile.`)
+            } else {
+                console.log(`controller.ts: ${player.name} tried to move ${move} sticks, which was illegal.`)
+                console.log(`there are still ${resultingBoardState} sticks in the pile.`)
+            }
         if (isGameOver) {
             this.handleGameOver(player, move)
         }

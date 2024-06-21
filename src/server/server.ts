@@ -26,6 +26,7 @@ console.log('server.ts: Listening on port 8080')
 httpServer.listen(8080);
 // set up a new controller for each client
 io.on("connection", (socket: ServerSocket) => {
+    console.log('server.ts received new connection')
     new ServerController(game, io, socket)
 })
 

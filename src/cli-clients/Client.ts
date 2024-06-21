@@ -42,14 +42,15 @@ export default class Client {
         // tell the server our friendly name
         this.socket.emit('helloFromClient', this.clientName);
         console.log(`${this.clientName} sent helloFromClient`)
-        // no, server starts game automatically 
-        // this.socket.emit('clientRequestsStartGame', this.clientName, this._player.playerID);
     }
 
     private setupEventHandlers() {        
-        this.socket.on('yourTurn', this.handleYourTurn);
-        // this.socket.on('invalidMove', this.handleInvalidMove);
-        this.socket.on('assignID', this.handleAssignID);
+        this.socket.on('yourTurn', this.handleYourTurn.bind(this));
+        this.socket.on('assignID', this.handleAssignID.bind(this));
+        this.socket.on('newGame', this.handleNewGame.bind(this));
+        this.socket.on('serverAnnounceNewClient', this.handleServerAnnounceNewClient.bind(this));
+        this.socket.on('serverAnnouncePlayerMoved', this.handleServerAnnouncePlayerMoved.bind(this));
+        this.socket.on('serverAnnounceWinner', this.handleServerAnnounceWinner.bind(this));
     
     }
 
@@ -58,7 +59,7 @@ export default class Client {
         this._player = { name: this.clientName, playerID: playerID }
     }
 
-    // take at most 20 moves and then stop
+    // don't take more than movesLeft moves
     private handleYourTurn = (gameNumber: GameNumber, boardState: BoardState) => {
         if (this.movesLeft <= 0) {
             console.log(`${this.clientName} is out of moves`)
@@ -71,20 +72,25 @@ export default class Client {
         this.socket.emit('clientTakesMove', move);
     }
 
-    // not used
-    // private handleInvalidMove = (gameNumber: GameNumber, playerID: PlayerID, move: Move) => {
-    //     console.log(`${this.clientName} received invalidMove`, gameNumber, move)
-    //     // 1 is always a legal move
-    //     const nextMove = 1
-    //     console.log(`${this.clientName} sending clientTakesMove`, nextMove)
-    //     this.socket.emit('clientTakesMove', this._player, nextMove);
-    // }
+    // in cli-client, messages below here are just echoed to the console.
+    // this will be different for a web clent
 
+    private handleNewGame = (gameNumber: GameNumber) => {
+        console.log(`${this.clientName} received newGame`, gameNumber)
+    }
     
 
     // not used
-    private handleGameStateChanged = (gameState: BoardState) => {
-        console.log(`${this.clientName} received gameStateChanged`, gameState)
+    private handleServerAnnounceNewClient = (playerName: string, playerID: PlayerID) => {
+        console.log(`${this.clientName} received serverAnnounceNewClient`, playerName, playerID)
+    }
+
+    private handleServerAnnouncePlayerMoved = (playerName: string, move: Move, resultingBoardState: BoardState, nextPlayerName: string) => {
+        console.log(`${this.clientName} received serverAnnouncePlayerMoved`, playerName, move, resultingBoardState, nextPlayerName)
+    }
+
+    private handleServerAnnounceWinner = (playerName: string, playerID: PlayerID) => {
+        console.log(`${this.clientName} received serverAnnounceWinner`, playerName, playerID)
     }
 
 }
