@@ -21,11 +21,10 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents>
 const game = new NimGame(20, 3);
 // we'll have one controller for each client, but they will *share*
 // the same game.
-let gameNumber = 0  // this should be in NimGame.
 
 console.log('server.ts: Listening on port 8080')
 httpServer.listen(8080);
-// setupEventHandlers(io);
+// set up a new controller for each client
 io.on("connection", (socket: ServerSocket) => {
     new ServerController(game, io, socket)
 })

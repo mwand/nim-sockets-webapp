@@ -1,17 +1,17 @@
-import { Player, ServerSocket} from '../shared/types';
-type PlayerList = Player[]
+import { Player, ServerSocket, INimGame, moveResponse } from '../shared/types';
+import PlayerList from './PlayerList';
 
 /**
  * Represents a game of Nim.
- * initialized to beginning of game
+ * initialized to a game with no players.
  */
-export default class NimGame {
-    
-    private _gameNumber = 0  
+export default class NimGame implements INimGame {
+
+    private _gameNumber = 0
     // incremented by this.resetGame
 
-    public get gameNumber(): number {return this._gameNumber}
-    
+    public get gameNumber(): number { return this._gameNumber }
+
 
     /** the number of sticks a player can take on their turn */
     private _turnLimit: number;
@@ -19,74 +19,66 @@ export default class NimGame {
     /** size of the initial pile */
     private _initPile: number;
 
-      /** size of the current pile */
-      private _pile: number;
-    
+    /** size of the current pile */
+    private _pile: number;
+
+    public get boardState(): number { return this._pile }
+
+    public get isGameOver(): boolean { return this._pile === 0 }
+
     private _gameInProgress: boolean = false;
     private _gameOver: boolean = false;
 
-    /** the players in the game */
-    private _players: Player[] = [];
 
-    /** the index of the current player in the players array */
-    private _currentIndex : number | undefined = undefined
-    
+
+    /** the players in the game, initally empty */
+    private _players = new PlayerList();
+
     /**
      * Creates a new instance of the Nim class.
      * @param initPile The initial number of sticks in the pile.
      */
+    // should the game know its controller? No,
+    // there are many controllers, but only one game.
     constructor(initPile: number, turnLimit: number) {
         this._initPile = initPile;
         this._pile = initPile;
         this._turnLimit = turnLimit;
     }
 
-    /** get the players */
-    public get players(): PlayerList {
-        return this._players;
-    }
+    // /** get the players */
+    // public get players(): PlayerList {
+    //     return this._players;
+    // }
 
-    public get playerNames(): string[] { return this._players.map(p => p.name); }
+    // public get playerNames(): string[] { return this._players.map(p => p.name); }
 
     /** add a player */
+    // if there are two players, start the game
     public addPlayer(player: Player): void {
-        this._players.push(player);        
-    }
-
-    public get currentPlayer(): Player | undefined {
-        if (this._currentIndex === undefined) {
-            return undefined
-        }   
-        return this._players[this._currentIndex]
-    }
-
-    // use socket as the key to remove a player
-    public removePlayer(socket:ServerSocket) {
-        this._players = this._players.filter(p => p.socket !== socket)
-    }
-
-    // does nothing if there are no players
-    public advanceIndex(): void {
-        if (this._currentIndex !== undefined) {
-            this._currentIndex = (this._currentIndex + 1) % this.nPlayers;
+        this._players.addPlayer(player);
+        if (this._players.nPlayers() === 2) {
+            console.log('NimGame.ts: starting game')
+            // start the game with first player to join as the first player
+            this.startGame(this._players.currentPlayer as Player);
         }
     }
 
-    public get nPlayers() { return this._players.length; }
+    // use socket as the key to remove a player
+    public removePlayer(socket: ServerSocket) {
+        this._players.removePlayer(socket)
+    }
 
-    
 
+    public get nPlayers() { return this._players.nPlayers; }
 
     /** resets the game to the starting state, with the same set of players */
-    /** player[0] always goes first */
-    public resetGame(): void {
-        this._pile = this._initPile;
-        this._gameOver = false;
-        this._gameInProgress = true;
+    // start the game by sending the first player their turn.
+    public startGame(player:Player): void {
         this._gameNumber++
-        if (this._players.length > 0) {
-            this._currentIndex = 0;
-        } else throw new Error('No players in the game')
+        this._pile = this._initPile;
+        this._gameInProgress = true;
+        player.socket.emit('yourTurn', this._gameNumber, this._pile);
     }
 
     /**
@@ -97,14 +89,6 @@ export default class NimGame {
         return this._pile;
     }
 
-    /**
-     * Determines if the game is over.
-     * @returns True if the game is over (i.e. the pile is empty), false otherwise.
-     */
-    public get isGameOver(): boolean {
-        return this._pile === 0;
-    }   
-    
     public get isGameInProgress(): boolean {
         return this._gameInProgress;
     }
@@ -115,29 +99,65 @@ export default class NimGame {
      * @throws An error if the number of sticks to take is invalid (i.e. less than 1 or greater than the number of sticks in the pile).
      * if the number of sticks is valid, advances the turn to the next player
     */
-    public move(player: Player, numSticks: number): void {
+    public move(player: Player, numSticks: number): moveResponse {
         if (!this._gameInProgress) {
             console.log('game not in progress')
-            throw new Error("Game not in progress");
+            throw new Error("No game in progress");
         }
-        if (this._gameOver) {
-            console.log('game over')
-            throw new Error("Game is over");
-        }
-        if (player.playerID !== this.currentPlayer?.playerID) {
+        // if (this._gameOver) {
+        //     console.log('game over')
+        //     throw new Error("Game is over");
+        // }
+        if (player.playerID !== this._players.currentPlayer?.playerID) {
             console.log('not this player\'s turn')
             console.log('player', player.name, player.playerID);
-            console.log('currentPlayer', this.currentPlayer?.name, this.currentPlayer?.playerID)
-            
+            console.log('currentPlayer',
+                this._players.currentPlayer?.name,
+                this._players.currentPlayer?.playerID)
             throw new Error("Not this player's turn");
         }
         if (numSticks < 1 || numSticks > this._turnLimit) {
+            // if the move is invalid, report it and go on to the next player
             console.log('invalid number of sticks')
-            throw new Error(`Invalid number of sticks: ${numSticks}`);
+            this._players.advancePlayer()
+            return {
+                moveAccepted: false,
+                isGameOver: false,
+                player: player,
+                move: numSticks,
+                resultingBoardState: this._pile,
+                nextPlayer: this._players.currentPlayer as Player
+            }
         }
         // take the sticks and advance to the next player
         this._pile -= numSticks;
-        // this.advanceIndex()
-        // console.log('advanceIndex: new index is', this._currentIndex);
+        if (this._pile > 0) {
+            // the game is not over, so advance to the next player
+            this._players.advancePlayer();
+            return {
+                moveAccepted: true,
+                isGameOver: false,
+                player: player,
+                move: numSticks,
+                resultingBoardState: this._pile,
+                nextPlayer: this._players.currentPlayer as Player
+            }
+        } else {
+            // the game is over, reset the pile
+            this._pile = this._initPile;
+            return {
+                moveAccepted: true,
+                isGameOver: true,
+                player: player,
+                move: numSticks,
+                resultingBoardState: this._pile,
+                nextPlayer: this._players.currentPlayer as Player
+            }
+
+        }
     }
+
 }
+
+
+
