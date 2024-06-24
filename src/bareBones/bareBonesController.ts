@@ -1,56 +1,70 @@
 // import { createServer as createHttpServer } from "http";
-import { Server } from "socket.io";
+import { DisconnectReason, Server } from "socket.io";
 import { ServerSocket, ClientToServerEvents, ServerToClientEvents } from '../shared/types'
-import NimGame from "./NimGame";
-import { Player, Move, moveResponse } from "../shared/types";
 import { nanoid } from 'nanoid';
+
+type Player = {name: string, playerID: string, socket: ServerSocket}
 
 // each controller is responsible for one client.
 
-export default class ServerController {
-    private _game: NimGame
+// all this controller does
+
+export default class BareBonesController {
+
     private _io: Server<ClientToServerEvents, ServerToClientEvents>
     private _socket: ServerSocket //Server<ClientToServerEvents, ServerToClientEvents>
     private _player: Player | undefined
 
+    private get playerName() { return this._player?.name }
+
     private gameNumber = 0
     constructor(
-        game: NimGame,
         io: Server<ClientToServerEvents, ServerToClientEvents>,
         socket: ServerSocket
 
     ) {
-        this._game = game;
         this._socket = socket;
         this._io = io;
-        console.log('new serverController created')
+        console.log('new controller created')
+        console.log('current players:', this._game.playerNames)
         this.setupEventHandlers();
     }
 
 
     private setupEventHandlers() {
-        this._socket.on("helloFromClient", this.helloFromClientHandler.bind(this))
-        this._socket.on("clientTakesMove", this.clientTakesMoveHandler.bind(this))
+        
+        console.log('setting up event handlers')
+    
+        // this._socket.on("helloFromClient", this.helloFromClientHandler.bind(this))
+        // this._socket.on("clientTakesMove", this.clientTakesMoveHandler.bind(this))
         this._socket.on("disconnect", () => this.handleDisconnect.bind(this))
+        // this._io.on("disconnect", () => this.handleDisconnect.bind(this))
     }
 
-    private handleDisconnect() {
+    private handleDisconnect(){
+        console.log(`controller[${this.playerName}] received disconnect on its socket`, 
+            { nclients: this._game.nPlayers() })
+        console.log('server removed player', { nclients: this._game.nPlayers() })
+        // console.log('server received disconnect on a socket', { reason })
         // remove this client from the game
         this._game.removePlayer(this._socket);
-        console.log('server reports disconnect', { nclients: this._game.nPlayers })
+       
         // console.log('controller.ts: clientNames', this._game.playerNames)
     }
 
     private helloFromClientHandler(clientName: string): void {
-        console.log('\nserver received helloFromClient', clientName)
+        console.log(`controller[${clientName}]: received helloFromClient ${clientName}`)
         const playerID = nanoid(6);
         this._player = { name: clientName, playerID: playerID, socket: this._socket }
-        console.log(`controller.ts: ${clientName} assigned ID ${playerID}`)
+        console.log(`controller[${clientName}]: ${clientName} assigned ID ${playerID}`)
         // tell the client their ID
         this._socket.emit('assignID', playerID);
         this._io.emit('serverAnnounceNewClient', clientName, playerID);
+        this._io.emit('serverAnnouncePlayerNames', this._game.playerNames)        
         // addPlayer starts the game as soon as there are two players
         this._game.addPlayer(this._player);
+        console.log(`controller[${clientName}] playerNames:`, this._game.playerNames)
+
     }
 
 

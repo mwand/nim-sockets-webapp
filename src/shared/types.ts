@@ -52,14 +52,7 @@ export type moveResponse = {
 
 
 
-// no, the game just responds to its controller
-// export type GameEvents = {
-//     cantStartGame: () => void;  // not enough players
-//     gameStarted: (gameNumber: GameNumber) => void;
-//     moveAccepted: (player: Player, move: Move, resultingBoardState:BoardState, nextPlayer:Player) => void;
-//     moveRejected: (player: Player, move: Move, resultingBoardState:BoardState, nextPlayer:Player) => void;
-//     playerWon: (player: Player) => void;
-// }
+
 
 export type Strategy = (boardState: BoardState) => Move
 
@@ -90,7 +83,11 @@ export interface ServerToClientEvents {
     // Announcements: generally sent to io, not to individual clients
 
     // controller announces that a player has joined the game
-    serverAnnounceNewClient: (playerName: string, playerID: PlayerID) => void;    
+    serverAnnounceNewClient: (playerName: string, playerID: PlayerID) => void;
+    
+    // controller announces the names of all the players
+    // do this after each player joins, also when a player requests it
+    serverAnnouncePlayerNames: (playerNames: string[]) => void;
 
     // controller announces that a player has moved.
     serverAnnouncePlayerMoved: (playerName: string, 
@@ -113,6 +110,9 @@ export interface ClientToServerEvents {
 
     // client tells the server its move
     clientTakesMove: (move: Move) => void;
+
+    // client tells the server it is disconnecting
+    clientDisconnect: (clientName:string) => void;
 
 }
 

@@ -51,14 +51,15 @@ export default class NimGame implements INimGame {
     //     return this._players;
     // }
 
-    // public get playerNames(): string[] { return this._players.map(p => p.name); }
+    public get playerNames(): string[] { return this._players.playerNames }
 
     /** add a player */
     // if there are two players, start the game
     public addPlayer(player: Player): void {
         this._players.addPlayer(player);
-        if (this._players.nPlayers() === 2) {
+        if ((this._players.nPlayers() >= 2) && !this._gameInProgress){
             console.log('NimGame.ts: starting game')
+            console.log('playerNames:', this.playerNames)
             // start the game with first player to join as the first player
             this.startGame(this._players.currentPlayer as Player);
         }

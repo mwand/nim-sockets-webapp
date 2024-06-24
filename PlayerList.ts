@@ -7,6 +7,8 @@ export default class PlayerList implements IPlayerList {
 
     public get players () {return this._players;}
 
+    public get playerNames(): string[] { return this._players.map(p => p.name) }
+
     public nPlayers() {return this._players.length; }
 
     /** the index of the current player */
