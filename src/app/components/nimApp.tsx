@@ -38,25 +38,25 @@ export default function Home() {
 
   // once socket is set up, send a helloFromClient message
   // and wait(?) for the server to assign an ID
-  // useEffect(() => {    
-  //   socket?.on("assignID", (playerID: PlayerID) => {
-  //     setPlayerID(playerID);
-  //   });
-  // }, [socket]);
+  useEffect(() => {    
+    socket?.on("assignID", (playerID: PlayerID) => {
+      setPlayerID(playerID);
+    });
+  }, [socket]);
 
-  return (
-    <div>
-      <Box>
-        <Heading>Home</Heading>
-        <Heading>Connected: {isConnected.toString()}</Heading>
-      </Box>
-      {/* <LoginPage
-        setPlayerName={setPlayerName}
-        socket={socket as ClientSocket}
-      /> */}
-      ;
-    </div>
-  );
+  // return (
+  //   <div>
+  //     <Box>
+  //       <Heading>Home</Heading>
+  //       <Heading>Connected: {isConnected.toString()}</Heading>
+  //     </Box>
+  //     <LoginPage
+  //       setPlayerName={setPlayerName}
+  //       socket={socket as ClientSocket}
+  //     />
+  //     ;
+  //   </div>
+  // );
 
 
   if (!playerName) {

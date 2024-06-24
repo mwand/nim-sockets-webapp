@@ -75,10 +75,10 @@ export interface ServerToClientEvents {
     assignID: (playerID: string) => void;
 
     // controller tells a client that it is their turn.
-    yourTurn: (gameNumber: GameNumber, boardState: number) => void;
+    yourTurn: (gameNumber: GameNumber, boardState: BoardState) => void;
 
     // game tells each registered client that the game has started
-    newGame: (gameNumber: GameNumber) => void;
+    newGame: (gameNumber: GameNumber, boardState: BoardState) => void;
 
     // Announcements: generally sent to io, not to individual clients
 

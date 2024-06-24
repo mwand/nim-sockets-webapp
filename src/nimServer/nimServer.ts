@@ -20,25 +20,32 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents>
     });
 
 // `game` is the single source of truth for the game state
-// const game = new NimGame(20, 3);
+const game = new NimGame(20, 3);
 
 // we'll have one controller for each client, but they will *share*
 // the same game.
 
-console.log('server.ts: Listening on port 8080')
-httpServer.listen(8080);
 let nClients = 0;
+
+console.log('nimServer.ts: Listening on port 8080', { nClients: nClients})
+httpServer.listen(8080);
+
+
 // set up a new controller for each client
 io.on("connection", (socket: ServerSocket) => {
     console.log('nimServer.ts received new connection.')
+    
     nClients++;
     console.log('nimServer.ts: nClients:', nClients)
+    const controller = new ServerController(game, io, socket)
+
     // socket.emit('helloFromServer', nClients)
     socket.on('disconnect', () => {
-        console.log('nimServer.ts: client disconnected')
+        console.log('nimServer.ts: a client disconnected')
+        controller.disconnect()
         nClients--;
         console.log('nimServer.ts: nClients:', nClients)
-        // new ServerController(game, io, socket)
+        
     })
 })
 

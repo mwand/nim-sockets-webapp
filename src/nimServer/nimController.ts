@@ -37,19 +37,16 @@ export default class ServerController {
     
         this._socket.on("helloFromClient", this.helloFromClientHandler.bind(this))
         this._socket.on("clientTakesMove", this.clientTakesMoveHandler.bind(this))
-        this._socket.on("disconnect", () => this.handleDisconnect.bind(this))
-        // this._io.on("disconnect", () => this.handleDisconnect.bind(this))
+
     }
 
-    private handleDisconnect(){
-        console.log(`controller[${this.playerName}] received disconnect on its socket`, 
-            { nclients: this._game.nPlayers() })
-        console.log('server removed player', { nclients: this._game.nPlayers() })
-        // console.log('server received disconnect on a socket', { reason })
+    public disconnect() {
+        console.log(`controller[${this.playerName}] received disconnect on its socket`)
+        console.log({currentPlayers: this._game.playerNames})
+        console.log('controller removing player', this.playerName)
         // remove this client from the game
         this._game.removePlayer(this._socket);
-       
-        // console.log('controller.ts: clientNames', this._game.playerNames)
+        console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
     }
 
     private helloFromClientHandler(clientName: string): void {
