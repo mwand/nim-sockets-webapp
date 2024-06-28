@@ -4,22 +4,39 @@ import { useEffect, useState } from 'react';
 import { Heading, VStack, Box } from '@chakra-ui/react';
 
 import { PlayerID, GameNumber, BoardState, Move } from '@/shared/types';
-import type { ClientSocket } from "../../shared/types";
+import type { ClientSocket, GameStatus } from "../../shared/types";
 
 import YourMoveForm from './YourMoveForm';
 
-export default function DuringGamePage(props: {
+
+function createGameStatusMessage(gameStatus: GameStatus): string {
+  console.log("gameStatus", gameStatus);
+  if (gameStatus.gameInProgress) {
+    return `Game in progress. Next player is ${gameStatus.nextPlayerName}`;
+  } else {
+    return "No game in progress";
+  }
+}
+
+export default function PostLoginPage(props: {
   playerName: string;
   playerID: PlayerID;
+  gameStatus:GameStatus
   socket: ClientSocket;
 }) {
   const [socket, _] = useState<ClientSocket>(props.socket);
   // const [playerNames, setPlayerNames] = useState<string[]>([]);
-  const [gameStatus, setGameStatus] = useState<string>("game not started");
+  // message to display to the player
+  const [gameStatusMessage, setGameStatusMessage] = useState<string | undefined>(
+    // createGameStatusMessage(props.gameStatus)
+    "Waiting for game to start..."
+  )
   const [boardState, setBoardState] = useState<BoardState | undefined>(
     undefined
   );
   const [yourMove, setYourMove] = useState<boolean>(false);
+
+  
 
   // set up event handlers
   useEffect(() => {
@@ -31,12 +48,12 @@ export default function DuringGamePage(props: {
   }, [socket]);
 
   function handleNewGame(gameNumber: GameNumber, boardState: BoardState) {
-    setGameStatus((_) => `Game ${gameNumber} started!`);
+    setGameStatusMessage((_) => `Game ${gameNumber} started!`);
     setBoardState((_) => boardState);
   }
 
   function handleYourTurn(gameNumber: GameNumber, boardState: BoardState) {
-    setGameStatus((_) => `Your turn!`);
+    setGameStatusMessage((_) => `Your turn!`);
     setYourMove((_) => true);
     setBoardState((_) => boardState);
   }
@@ -44,27 +61,27 @@ export default function DuringGamePage(props: {
   function handleServerAnnouncePlayerMoved(
     playerName: string,
     move: Move,
+    moveAccepted: boolean,
     resultingBoardState: BoardState,
     nextPlayerName: string
   ) {
     setBoardState((_) => resultingBoardState);
-    setGameStatus(
-      (_) =>
-        `Player ${playerName} moved ${move} sticks. Next player: ${nextPlayerName}`
-    );
+    setGameStatusMessage(
+      (_) => (moveAccepted ? 
+        `Player ${playerName} moved ${move} sticks. Next player is ${nextPlayerName}`
+        : `Player ${playerName} tried to move ${move} sticks, which was illegal. Next player is ${nextPlayerName}`
+    ));
   }
   function handleServerAnnounceWinner(playerName: string, playerID: PlayerID) {
-    setGameStatus((_) => `Player ${playerName} wins!`);
+    setGameStatusMessage((_) => `Player ${playerName} wins!`);
   }
-  // function handleServerAnnouncePlayerNames(playerNames: string[]) {
-  //   setPlayerNames(playerNames);
-  // }
+  
 
   return (
     <VStack>
-      <Heading>Player {props.playerName} </Heading>
+      <Heading>Player {props.playerName} (ID: {props.playerID}) </Heading>
       <VStack align="left">
-        <Box> Status: {gameStatus}</Box>
+        <Box> Status: {gameStatusMessage}</Box>
         <Box> Board State: {boardState} </Box>
         {yourMove ? (
           <YourMoveForm

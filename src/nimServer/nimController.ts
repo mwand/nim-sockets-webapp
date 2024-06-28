@@ -49,13 +49,16 @@ export default class ServerController {
         console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
     }
 
+    
     private helloFromClientHandler(clientName: string): void {
         console.log(`controller[${clientName}]: received helloFromClient ${clientName}`)
         const playerID = nanoid(6);
         this._player = { name: clientName, playerID: playerID, socket: this._socket }
         console.log(`controller[${clientName}]: ${clientName} assigned ID ${playerID}`)
-        // tell the client their ID
-        this._socket.emit('assignID', playerID);
+        console.log(`controller[${clientName}]: current players:`, this._game.playerNames)
+        console.log(`controller[${clientName}]: gameStatus:`, this._game.gameStatus)
+        // tell the client their ID and the current state of the game
+        this._socket.emit('assignID', playerID, this._game.gameStatus);
         this._io.emit('serverAnnounceNewClient', clientName, playerID);
         this._io.emit('serverAnnouncePlayerNames', this._game.playerNames)        
         // addPlayer starts the game as soon as there are two players
@@ -72,7 +75,7 @@ export default class ServerController {
         console.log('\nserver received clientMove', player?.name, move)
         const { moveAccepted, isGameOver, nextPlayer, resultingBoardState } = this._game.move(player, move);
         this._io.emit('serverAnnouncePlayerMoved', 
-            player.name, move, resultingBoardState, nextPlayer.name)
+            player.name, move, moveAccepted, resultingBoardState, nextPlayer.name)
         if (moveAccepted) {
                 console.log(`controller.ts: ${player.name} moved ${move} sticks, leaving ${resultingBoardState} sticks in the pile.`)
             } else {
@@ -105,7 +108,7 @@ export default class ServerController {
     private callback(nextPlayerSocket: ServerSocket) {
         return () => {
             // console.log('controller.ts: nextPlayer is', nextPlayer?.name, nextPlayer?.playerID)
-            nextPlayerSocket.emit('yourTurn', this.gameNumber, this._game.pile());
+            nextPlayerSocket.emit('yourTurn', this.gameNumber, this._game.boardState);
         }
     }
 

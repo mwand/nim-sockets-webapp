@@ -38,7 +38,6 @@ export default function LoginPage(
                 placeholder="type player name here"
                 onChange={(event) => {
                   setPlayerName(event.target.value);
-                  // console.log('setting Title to:', event.target.value)
                 }}
               />
               <Box>

@@ -12,6 +12,7 @@ export type BoardState = number;
 export type GameNumber = number
 export type TurnID = number
 export type PlayerID = string
+export type PlayerName = string
 
 export type Player = {
     name: string;
@@ -48,7 +49,12 @@ export type moveResponse = {
     nextPlayer:Player  // if game is over, this is the first player in the next game.
 }
 
-// whose responsibility is it to notify the next player that it's their turn?
+export type GameStatus = {
+    gameInProgress: boolean,
+    boardState: BoardState,
+    nextPlayerName: PlayerName | undefined
+}
+
 
 
 
@@ -72,7 +78,7 @@ export type Strategy = (boardState: BoardState) => Move
 export interface ServerToClientEvents {
 
     // controller assigns an id to a client
-    assignID: (playerID: string) => void;
+    assignID: (playerID: string, gameStatus:GameStatus) => void;
 
     // controller tells a client that it is their turn.
     yourTurn: (gameNumber: GameNumber, boardState: BoardState) => void;
@@ -92,6 +98,7 @@ export interface ServerToClientEvents {
     // controller announces that a player has moved.
     serverAnnouncePlayerMoved: (playerName: string, 
         move: Move, 
+        moveAccepted: boolean,
         resultingBoardState:BoardState, 
         nextPlayerName:string) => void;  
         

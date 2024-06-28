@@ -39,7 +39,6 @@ io.on("connection", (socket: ServerSocket) => {
     console.log('nimServer.ts: nClients:', nClients)
     const controller = new ServerController(game, io, socket)
 
-    // socket.emit('helloFromServer', nClients)
     socket.on('disconnect', () => {
         console.log('nimServer.ts: a client disconnected')
         controller.disconnect()

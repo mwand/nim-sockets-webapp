@@ -1,4 +1,4 @@
-import { Player, ServerSocket, INimGame, moveResponse } from '../shared/types';
+import { Player, ServerSocket, INimGame, moveResponse, GameStatus } from '../shared/types';
 import PlayerList from './PlayerList';
 
 /**
@@ -22,19 +22,13 @@ export default class NimGame implements INimGame {
     /** size of the current pile */
     private _pile: number;
 
-    public get boardState(): number { return this._pile }
-
-    public get isGameOver(): boolean { return this._pile === 0 }
-
-    private _gameInProgress: boolean = false;
-    private _gameOver: boolean = false;
-
-
-
     /** the players in the game, initally empty */
     private _players = new PlayerList();
 
-    /**
+    /** is a game currently in progress? */
+    private _gameInProgress: boolean = false;
+
+     /**
      * Creates a new instance of the Nim class.
      * @param initPile The initial number of sticks in the pile.
      */
@@ -46,37 +40,52 @@ export default class NimGame implements INimGame {
         this._turnLimit = turnLimit;
     }
 
-    // /** get the players */
-    // public get players(): PlayerList {
-    //     return this._players;
-    // }
 
+    // getters
+
+    public get boardState(): number { return this._pile }
+    public get isGameOver(): boolean { return this._pile === 0 }
     public get playerNames(): string[] { return this._players.playerNames }
+    public get nPlayers() { return this._players.nPlayers; }  
+    public get isGameInProgress(): boolean { return this._gameInProgress; }
+    
+    public get gameStatus() : GameStatus {
+        return {
+            gameInProgress: this._gameInProgress,
+            boardState: this._pile,
+            nextPlayerName: this._players.currentPlayer?.name
+        }
+    }
 
     /** add a player */
-    // if there are two players, start the game
+    // if there are at least two players, 
+    // and the game is not already in progress, 
+    // then start the game
     public addPlayer(player: Player): void {
         this._players.addPlayer(player);
         if ((this._players.nPlayers() >= 2) && !this._gameInProgress){
             console.log('NimGame.ts: starting game')
             console.log('playerNames:', this.playerNames)
-            // start the game with first player to join as the first player
+            // start the game 
+            // the first player is whoever the PlayerList thinks is the current player.
             this.startGame(this._players.currentPlayer as Player);
         }
     }
 
-    // use socket as the key to remove a player
+    // we'll use the socket as the key to remove a player
     public removePlayer(socket: ServerSocket) {
         this._players.removePlayer(socket)
-    }
+        // if there are no players, end the game
+        if (this._players.nPlayers() === 0) {
+            this._gameInProgress = false;
+            this._pile = this._initPile;
+        }
+    }    
 
-
-    public get nPlayers() { return this._players.nPlayers; }
-
-    /** resets the game to the starting state, with the same set of players */
+    /** reset the game to the starting state, with the same set of players */
     // start the game by sending the first player their turn. Also tells 
     // each player that the game has started.
-    public startGame(player:Player): void {
+    public startGame(firstPlayer:Player): void {
         this._gameNumber++
         this._pile = this._initPile;
         this._gameInProgress = true; 
@@ -85,20 +94,8 @@ export default class NimGame implements INimGame {
             p.socket.emit('newGame', this._gameNumber, this._pile);
         })
         // tell the first player that it's their turn
-        player.socket.emit('yourTurn', this._gameNumber, this._pile);
-    }
-
-    /**
-     * Gets the current number of sticks in the pile.
-     * @returns The current number of sticks in the pile.
-     */
-    public pile(): number {
-        return this._pile;
-    }
-
-    public get isGameInProgress(): boolean {
-        return this._gameInProgress;
-    }
+        firstPlayer.socket.emit('yourTurn', this._gameNumber, this._pile);
+    }  
 
     /**
      * Takes a specified number of sticks from the pile.
@@ -145,8 +142,11 @@ export default class NimGame implements INimGame {
                 nextPlayer: this._players.currentPlayer as Player
             }
         } else {
-            // the game is over, reset the pile
+            // the game is over, reset the pile.
+            // the winner gets to go first in the next game.
+            // should this be the job of startGame?
             this._pile = this._initPile;
+            this._gameInProgress = false;
             return {
                 moveAccepted: true,
                 isGameOver: true,

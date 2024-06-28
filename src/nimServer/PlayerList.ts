@@ -28,7 +28,12 @@ export default class PlayerList implements IPlayerList {
     }
 
     // use socket as the key to remove a player
+    // if the player removed is the current player, advance to the next player
     public removePlayer(socket:ServerSocket) {
+        const index = this._players.findIndex(p => p.socket === socket)
+        if (index === this.currentIndex) {  
+            this.advancePlayer();
+        }
         this._players = this._players.filter(p => p.socket !== socket)
     }
 
