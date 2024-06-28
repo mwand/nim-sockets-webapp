@@ -43,11 +43,12 @@ export default function nimApp () {
   // once socket is set up, send a helloFromClient message
   // and wait(?) for the server to assign an ID
   useEffect(() => {    
-    socket?.on("assignID", (playerID: PlayerID, gameStatus:GameStatus) => {
-      console.log(`client received assignID ${gameStatus}`)
-      console.log('gameStatus', gameStatus)
+    socket?.on("assignID", (playerID: PlayerID) => {
+      console.log(`client received assignID ${playerID}`)
+      console.log('playerID', playerID)
+     // console.log('received gameStatus', gameStatus)
       setPlayerID(_ => playerID);
-      setGameStatus(_ => gameStatus)
+     //  setGameStatus(gameStatus)
     });
   }, [socket]);
 

@@ -49,7 +49,7 @@ export default class ServerController {
         console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
     }
 
-    
+
     private helloFromClientHandler(clientName: string): void {
         console.log(`controller[${clientName}]: received helloFromClient ${clientName}`)
         const playerID = nanoid(6);
@@ -58,7 +58,7 @@ export default class ServerController {
         console.log(`controller[${clientName}]: current players:`, this._game.playerNames)
         console.log(`controller[${clientName}]: gameStatus:`, this._game.gameStatus)
         // tell the client their ID and the current state of the game
-        this._socket.emit('assignID', playerID, this._game.gameStatus);
+        this._socket.emit('assignID', playerID);
         this._io.emit('serverAnnounceNewClient', clientName, playerID);
         this._io.emit('serverAnnouncePlayerNames', this._game.playerNames)        
         // addPlayer starts the game as soon as there are two players

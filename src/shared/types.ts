@@ -78,7 +78,7 @@ export type Strategy = (boardState: BoardState) => Move
 export interface ServerToClientEvents {
 
     // controller assigns an id to a client
-    assignID: (playerID: string, gameStatus:GameStatus) => void;
+    assignID: (playerID: string) => void;
 
     // controller tells a client that it is their turn.
     yourTurn: (gameNumber: GameNumber, boardState: BoardState) => void;
