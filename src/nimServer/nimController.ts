@@ -56,9 +56,9 @@ export default class ServerController {
         this._player = { name: clientName, playerID: playerID, socket: this._socket }
         console.log(`controller[${clientName}]: ${clientName} assigned ID ${playerID}`)
         console.log(`controller[${clientName}]: current players:`, this._game.playerNames)
-        console.log(`controller[${clientName}]: gameStatus:`, this._game.gameStatus)
+        console.log(`controller[${clientName}]: emitting gameStatus:`, this._game.gameStatus)
         // tell the client their ID and the current state of the game
-        this._socket.emit('assignID', playerID);
+        this._socket.emit('assignID', playerID, this._game.gameStatus);
         this._io.emit('serverAnnounceNewClient', clientName, playerID);
         this._io.emit('serverAnnouncePlayerNames', this._game.playerNames)        
         // addPlayer starts the game as soon as there are two players

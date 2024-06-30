@@ -40,17 +40,18 @@ export default function nimApp () {
     };
   }, []);
 
+  // moving this to the PostLogin component
   // once socket is set up, send a helloFromClient message
   // and wait(?) for the server to assign an ID
-  useEffect(() => {    
-    socket?.on("assignID", (playerID: PlayerID) => {
-      console.log(`client received assignID ${playerID}`)
-      console.log('playerID', playerID)
-     // console.log('received gameStatus', gameStatus)
-      setPlayerID(_ => playerID);
-     //  setGameStatus(gameStatus)
-    });
-  }, [socket]);
+  // useEffect(() => {    
+  //   socket?.on("assignID", (playerID: PlayerID) => {
+  //     console.log(`client received assignID ${playerID}`)
+  //     console.log('playerID', playerID)
+  //    // console.log('received gameStatus', gameStatus)
+  //     setPlayerID(_ => playerID);
+  //    //  setGameStatus(gameStatus)
+  //   });
+  // }, [socket]);
 
 
   if (!playerName) {
@@ -58,9 +59,7 @@ export default function nimApp () {
   } else {
     return (
       <PostLoginPage
-        playerName={playerName}
-        playerID={playerID as string} // playerID should be defined at this point.
-        gameStatus={gameStatus as GameStatus}
+        playerName={playerName}  
         socket={socket as ClientSocket}
         
       />
@@ -70,6 +69,8 @@ export default function nimApp () {
   
 }
 
+// playerID={playerID as string} // playerID should be defined at this point.
+// gameStatus={gameStatus as GameStatus}
 
 // Button.defaultProps = {
 //   textColor: "red",

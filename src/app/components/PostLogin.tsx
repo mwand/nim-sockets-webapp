@@ -9,34 +9,37 @@ import type { ClientSocket, GameStatus } from "../../shared/types";
 import YourMoveForm from './YourMoveForm';
 
 
-function displayGameStatusMessage(gameStatus: GameStatus){
-  console.log('starting createGameStatusMessage')
+function displayGameStatusMessage(gameStatus: GameStatus | undefined){
+
+  useEffect(() => {
   console.log("gameStatus", gameStatus);
+  }, [gameStatus]);
+
+  if (gameStatus !== undefined){
   return (
     <VStack>
-      <Box>Game In Progress: {gameStatus.gameInProgress ? "Yes" : "No"}</Box>
+      <Box>Game In Progress: {gameStatus.gameInProgress}</Box>
       <Box>Board State: {gameStatus.boardState}</Box>
       <Box>Next Player: {gameStatus.nextPlayerName}</Box>
     </VStack>
   );
-}
+} }
 
   
 export default function PostLoginPage(props: {
   playerName: string;
-  playerID: PlayerID;
-  gameStatus:GameStatus
+//  playerID: PlayerID;
+//  gameStatus:GameStatus
   socket: ClientSocket;
 }) {
   const [socket, _] = useState<ClientSocket>(props.socket);
    const [boardState, setBoardState] = useState<BoardState | undefined>(
     undefined
   );
+  const [playerID, setPlayerID] = useState<PlayerID | undefined>(undefined);
+  const [gameStatus, setGameStatus] = useState<GameStatus | undefined>(undefined);
   const [yourMove, setYourMove] = useState<boolean>(false);
 
-  
-
-  
 
   // set up event handlers
   useEffect(() => {
@@ -45,6 +48,14 @@ export default function PostLoginPage(props: {
     // socket.on("serverAnnounceNewClient", handleServerAnnounceNewClient);
     socket.on("serverAnnouncePlayerMoved", handleServerAnnouncePlayerMoved);
     socket.on("serverAnnounceWinner", handleServerAnnounceWinner);
+
+    socket?.on("assignID", (playerID: PlayerID, gameStatus: GameStatus) => {
+      console.log(`client received assignID ${playerID}`);
+      console.log("playerID", playerID);
+      console.log("received gameStatus", gameStatus);
+      setPlayerID((_) => playerID);
+      setGameStatus(gameStatus);
+    });
    
   }, [socket]);
 
@@ -80,12 +91,12 @@ export default function PostLoginPage(props: {
 
   return (
     <VStack>
-      <Heading>Player {props.playerName} (ID: {props.playerID}) </Heading>
+      <Heading>Player {props.playerName} (ID: {playerID}) </Heading>
       <VStack align="left">
         /**
       
-    {/** <Box>Game In Progress: {props.gameStatus.gameInProgress ? "Yes" : "No"}</Box> */ 
-       /** <Box> Status: {displayGameStatusMessage(props.gameStatus)}</Box> */  }
+    {/** <Box>Game In Progress: {props.gameStatus.gameInProgress ? "Yes" : "No"}</Box> */ }
+        <Box> Status: {displayGameStatusMessage(gameStatus)}</Box> */  
         <Box> Board State: {boardState} </Box>
         {(yourMove) ? (
           <YourMoveForm
