@@ -53,6 +53,7 @@ export type GameStatus = {
     gameInProgress: boolean,
     boardState: BoardState,
     nextPlayerName: PlayerName | undefined
+    nextPlayerID: PlayerID | undefined
 }
 
 
@@ -102,6 +103,10 @@ export interface ServerToClientEvents {
         moveAccepted: boolean,
         resultingBoardState:BoardState, 
         nextPlayerName:string) => void;  
+
+    // controller announces that the game status has changed
+    // this is "REST over WS"
+        serverAnnounceStatusChanged: (reason: string, gameStatus: GameStatus) => void;
         
     // controller announces winner
     serverAnnounceWinner: (playerName: string, playerID: string) => void;

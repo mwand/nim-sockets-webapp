@@ -38,15 +38,19 @@ export default class ServerController {
         this._socket.on("helloFromClient", this.helloFromClientHandler.bind(this))
         this._socket.on("clientTakesMove", this.clientTakesMoveHandler.bind(this))
 
-    }
+    } 
 
     public disconnect() {
         console.log(`controller[${this.playerName}] received disconnect on its socket`)
         console.log({currentPlayers: this._game.playerNames})
         console.log('controller removing player', this.playerName)
         // remove this client from the game
+        // if this is the current player, the game will advance to the next player
         this._game.removePlayer(this._socket);
         console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
+        this._io.emit('serverAnnounceStatusChanged', 'playerDisconnected', this._game.gameStatus)
+        // tell the next player it's their turn.
+       this.requestNextMove(this._game.currentPlayer?.socket as ServerSocket)
     }
 
 
@@ -68,20 +72,41 @@ export default class ServerController {
     }
 
 
+    // export type GameStatus = {
+    //     gameInProgress: boolean,
+    //     boardState: BoardState,
+    //     nextPlayerName: PlayerName | undefined
+    // }
+
     // client takes a turn
     // we know which client this is: it's the one at the other end of the socket
     private clientTakesMoveHandler(move: number): void {
         const player = this._player as Player
         console.log('\nserver received clientMove', player?.name, move)
-        const { moveAccepted, isGameOver, nextPlayer, resultingBoardState } = this._game.move(player, move);
-        this._io.emit('serverAnnouncePlayerMoved', 
-            player.name, move, moveAccepted, resultingBoardState, nextPlayer.name)
+        
+        // tell the game to make the move
+        const { moveAccepted, isGameOver, nextPlayer, resultingBoardState } 
+            = this._game.move(player, move);
+        // this._io.emit('serverAnnouncePlayerMoved', 
+        //     player.name, move, moveAccepted, resultingBoardState, nextPlayer.name)
+        const gameStatus = this._game.gameStatus
+        
+        // log the move to console.
         if (moveAccepted) {
                 console.log(`controller.ts: ${player.name} moved ${move} sticks, leaving ${resultingBoardState} sticks in the pile.`)
             } else {
                 console.log(`controller.ts: ${player.name} tried to move ${move} sticks, which was illegal.`)
                 console.log(`there are still ${resultingBoardState} sticks in the pile.`)
             }
+            console.log(`controller.ts: players: ${this._game.playerNames}`)
+            console.log(`controller.ts: next player is ${nextPlayer.name}`)
+
+        // tell the clients about the move
+        const reason: string = (isGameOver) ? `player ${player.name} won.`
+            : (moveAccepted) ? 'moveAccepted' : 'illegalMove'
+        this._io.emit('serverAnnounceStatusChanged', reason, gameStatus)
+
+        // if game is over, start another game, otherwise, request the next move    
         if (isGameOver) {
             this.handleGameOver(player, move)
         }
@@ -108,7 +133,7 @@ export default class ServerController {
     private callback(nextPlayerSocket: ServerSocket) {
         return () => {
             // console.log('controller.ts: nextPlayer is', nextPlayer?.name, nextPlayer?.playerID)
-            nextPlayerSocket.emit('yourTurn', this.gameNumber, this._game.boardState);
+            nextPlayerSocket?.emit('yourTurn', this.gameNumber, this._game.boardState);
         }
     }
 
