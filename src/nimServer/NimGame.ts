@@ -1,4 +1,3 @@
-import next from 'next';
 import { Player, ServerSocket, INimGame, moveResponse, GameStatus } from '../shared/types';
 import PlayerList from './PlayerList';
 
@@ -49,14 +48,12 @@ export default class NimGame implements INimGame {
     public get playerNames(): string[] { return this._players.playerNames }
     public get nPlayers() { return this._players.nPlayers; }  
     public get isGameInProgress(): boolean { return this._gameInProgress; }
-    public get currentPlayer(): Player | undefined { return this._players.currentPlayer; }
     
     public get gameStatus() : GameStatus {
         return {
             gameInProgress: this._gameInProgress,
             boardState: this._pile,
-            nextPlayerName: this._players.currentPlayer?.name,
-            nextPlayerID: this._players.currentPlayer?.playerID
+            nextPlayerName: this._players.currentPlayer?.name
         }
     }
 
@@ -73,17 +70,16 @@ export default class NimGame implements INimGame {
             // the first player is whoever the PlayerList thinks is the current player.
             this.startGame(this._players.currentPlayer as Player);
         }
-    } 
+    }
 
     // we'll use the socket as the key to remove a player
-    public removePlayer(removedPlayerSocket: ServerSocket) {
-       // PlayerList will advance to the next player
-        this._players.removePlayer(removedPlayerSocket)
+    public removePlayer(socket: ServerSocket) {
+        this._players.removePlayer(socket)
         // if there are no players, end the game
         if (this._players.nPlayers() === 0) {
             this._gameInProgress = false;
             this._pile = this._initPile;
-        } 
+        }
     }    
 
     /** reset the game to the starting state, with the same set of players */

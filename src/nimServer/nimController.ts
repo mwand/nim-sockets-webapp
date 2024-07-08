@@ -35,7 +35,18 @@ export default class ServerController {
         console.log('setting up event handlers')    
         this._socket.on("helloFromClient", this.helloFromClientHandler.bind(this))
         this._socket.on("clientTakesMove", this.clientTakesMoveHandler.bind(this))
-    } 
+
+    }
+
+    public disconnect() {
+        console.log(`controller[${this.playerName}] received disconnect on its socket`)
+        console.log({currentPlayers: this._game.playerNames})
+        console.log('controller removing player', this.playerName)
+        // remove this client from the game
+        this._game.removePlayer(this._socket);
+        console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
+    }
+
 
     private helloFromClientHandler(clientName: string): void {
         console.log(`controller[${clientName}]: received helloFromClient ${clientName}`)
@@ -53,52 +64,25 @@ export default class ServerController {
         console.log(`controller[${clientName}] playerNames:`, this._game.playerNames)
 
     }
-    // remove this client from the game
-    // in the two player game, the game stops when a player leaves.
-    public disconnect() {
-        console.log(`controller[${this.playerName}] received disconnect on its socket`)
-        console.log({currentPlayers: this._game.playerNames})
-        console.log('controller removing player', this.playerName)    
-        this._game.removePlayer(this._socket);
-        console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
-        this._io.emit('serverAnnounceStatusChanged', 'playerLeaves', this._game.gameStatus)
-        // tell the next player it's their turn. For two-player game, the game is over.
-       //  this.requestNextMove(this._game.currentPlayer?.socket as ServerSocket)
-    }
+
 
     // client takes a turn
     // we know which client this is: it's the one at the other end of the socket
     private clientTakesMoveHandler(move: number): void {
         const player = this._player as Player
-        console.log('\nserver received clientMove', player?.name, move)        
-        // tell the game to make the move
-        const moveResponse = this._game.move(player, move);
-        
-        const { moveAccepted, isGameOver, nextPlayer, resultingBoardState } 
-            = moveResponse
-        // this._io.emit('serverAnnouncePlayerMoved', 
-        //     player.name, move, moveAccepted, resultingBoardState, nextPlayer.name)
-        const gameStatus = this._game.gameStatus
-        
-        // log the move to console.
+        console.log('\nserver received clientMove', player?.name, move)
+        const { moveAccepted, isGameOver, nextPlayer, resultingBoardState } = this._game.move(player, move);
+        this._io.emit('serverAnnouncePlayerMoved', 
+            player.name, move, moveAccepted, resultingBoardState, nextPlayer.name)
         if (moveAccepted) {
                 console.log(`controller.ts: ${player.name} moved ${move} sticks, leaving ${resultingBoardState} sticks in the pile.`)
             } else {
                 console.log(`controller.ts: ${player.name} tried to move ${move} sticks, which was illegal.`)
                 console.log(`there are still ${resultingBoardState} sticks in the pile.`)
             }
-            console.log(`controller.ts: players: ${this._game.playerNames}`)
-            console.log(`controller.ts: next player is ${nextPlayer.name}`)
-
-        // tell the clients about the move
-        const reason: GameEvent 
-            = (isGameOver) ? `gameOver`
-                : (moveAccepted) ? 'playerMoves' 
-                : 'illegalMove'
-        this._io.emit('serverAnnounceStatusChanged', reason, gameStatus)
-
-        // if game is over, start another game, otherwise, request the next move    
-        if (isGameOver) { this.handleGameOver(player, move) }
+        if (isGameOver) {
+            this.handleGameOver(player, move)
+        }
         else { this.requestNextMove(nextPlayer.socket) }
     }
 
@@ -122,7 +106,8 @@ export default class ServerController {
 
     private callback(nextPlayerSocket: ServerSocket) {
         return () => {
-            nextPlayerSocket?.emit('yourTurn', this.gameNumber, this._game.boardState);
+            // console.log('controller.ts: nextPlayer is', nextPlayer?.name, nextPlayer?.playerID)
+            nextPlayerSocket.emit('yourTurn', this.gameNumber, this._game.boardState);
         }
     }
 
