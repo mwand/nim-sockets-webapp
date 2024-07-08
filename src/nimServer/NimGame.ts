@@ -53,7 +53,8 @@ export default class NimGame implements INimGame {
         return {
             gameInProgress: this._gameInProgress,
             boardState: this._pile,
-            nextPlayerName: this._players.currentPlayer?.name
+            nextPlayerName: this._players.currentPlayer?.name,
+            nextPlayerID: this._players.currentPlayer?.playerID
         }
     }
 

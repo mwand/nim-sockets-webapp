@@ -72,8 +72,8 @@ export default class ServerController {
         const player = this._player as Player
         console.log('\nserver received clientMove', player?.name, move)
         const { moveAccepted, isGameOver, nextPlayer, resultingBoardState } = this._game.move(player, move);
-        this._io.emit('serverAnnouncePlayerMoved', 
-            player.name, move, moveAccepted, resultingBoardState, nextPlayer.name)
+        // this._io.emit('serverAnnouncePlayerMoved', 
+        //     player.name, move, moveAccepted, resultingBoardState, nextPlayer.name)
         if (moveAccepted) {
                 console.log(`controller.ts: ${player.name} moved ${move} sticks, leaving ${resultingBoardState} sticks in the pile.`)
             } else {
