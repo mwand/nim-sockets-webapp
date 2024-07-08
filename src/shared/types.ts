@@ -14,17 +14,10 @@ export type TurnID = number
 export type PlayerID = string
 export type PlayerName = string
 
-// don't send items of type Player over the wire!
-// use PlayerRep instead!
 export type Player = {
     name: string;
     playerID: string; // unique id for this player
     socket: ServerSocket // the server end of the  socket for this client
-}
-
-export type PlayerRep = {
-    playerName: string;
-    playerID: string
 }
 
 export interface IPlayerList {
@@ -38,11 +31,12 @@ export interface IPlayerList {
 
 export interface INimGame {
     addPlayer(player: Player): void;
-    removePlayer(socket: ServerSocket): void;    
+    removePlayer(socket: ServerSocket): void;
+    
     // the game starts itself as soon as there are two players
     boardState: BoardState;
-    // rejects move if not player's turn or move is illegal
-    move: (player: Player, move: Move) => moveResponse; 
+    move: (player: Player, move: Move) => moveResponse; // rejects move if not player's turn 
+    // should it throw an error instead if it's not the player's turn?? 
     isGameOver: boolean;
 }
 
@@ -62,28 +56,9 @@ export type GameStatus = {
     nextPlayerID: PlayerID | undefined
 }
 
-/**
- * 0 players:
-  playerJoins
-  playerLeaves
-
-1 players
-  playerJoins
-  playerLeaves
-
-2 players:  
-  playerMoves, legal move, game not over
-  playerMoves, illegal move
-  playerMoves, game over
-  playerLeaves
-  playerJoins  (player should get "game full" message)
- */
-
-export type GameEvent = 'playerJoins' | 'playerLeaves' 
-| 'playerMoves' | 'illegalMove' | 'gameOver'
-        
-
-
+export type GameEvent =
+    'playerJoins' | 'playerLeaves'
+    | 'playerMoves' | 'illegalMove' | 'gameOver'
 
 
 
@@ -114,34 +89,34 @@ export interface ServerToClientEvents {
     yourTurn: (gameNumber: GameNumber, boardState: BoardState) => void;
 
     // game tells each registered client that the game has started
-    newGame: (gameStatus: GameStatus) => void;
+    newGame: (gameNumber: GameNumber, boardState: BoardState) => void;
 
     // Announcements: generally sent to io, not to individual clients
 
     // controller announces that a player has joined the game
-    // serverAnnounceNewClient: (playerName: string, playerID: PlayerID) => void;
+    serverAnnounceNewClient: (playerName: string, playerID: PlayerID) => void;
     
     // controller announces the names of all the players
     // do this after each player joins, also when a player requests it
     serverAnnouncePlayerNames: (playerNames: string[]) => void;
 
     // controller announces that a player has moved.
-    // serverAnnouncePlayerMoved: (playerName: string, 
-    //     move: Move, 
-    //     moveAccepted: boolean,
-    //     resultingBoardState:BoardState, 
-    //     nextPlayerName:string) => void;  
+    serverAnnouncePlayerMoved: (playerName: string, 
+        move: Move, 
+        moveAccepted: boolean,
+        resultingBoardState:BoardState, 
+        nextPlayerName:string) => void;  
 
     // controller announces that the game status has changed
     // this is "REST over WS"
         serverAnnounceStatusChanged: (reason: GameEvent, gameStatus: GameStatus) => void;
         
     // controller announces winner
-    // serverAnnounceWinner: (playerName: string, playerID: string) => void;
+    serverAnnounceWinner: (playerName: string, playerID: string) => void;
 
     // controller announces that it is shutting down
     // a player should disconnect.
-    // serverAnnounceHasNoMoreMoves: () => void;
+    serverAnnounceHasNoMoreMoves: () => void;
 }
 
 export interface ClientToServerEvents {
@@ -152,8 +127,8 @@ export interface ClientToServerEvents {
     // client tells the server its move
     clientTakesMove: (move: Move) => void;
 
-    // 'disconnect' is built in to socket.io
-
+    // client tells the server it is disconnecting
+    clientDisconnect: (clientName:string) => void;
 
 }
 

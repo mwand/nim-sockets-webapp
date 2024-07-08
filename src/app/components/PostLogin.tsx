@@ -8,6 +8,13 @@ import type { ClientSocket, GameStatus } from "../../shared/types";
 
 import YourMoveForm from './YourMoveForm';
 
+function nextPlayerName(gameStatus: GameStatus | undefined): string {
+  if (gameStatus?.nextPlayerName === undefined || gameStatus?.gameInProgress === false) {
+    return "waiting for start";
+  } else {
+    return gameStatus.nextPlayerName;
+  }
+}
 
 function displayGameStatusMessage(gameStatus: GameStatus | undefined){
 
@@ -17,15 +24,19 @@ function displayGameStatusMessage(gameStatus: GameStatus | undefined){
 
   if (gameStatus !== undefined){
   return (
-    <VStack>
-      <Box>Game In Progress: {gameStatus.gameInProgress}</Box>
+    <VStack align="left">
+      
       <Box>Board State: {gameStatus.boardState}</Box>
-      <Box>Next Player: {gameStatus.nextPlayerName}</Box>
+      <Box>Next Player: {nextPlayerName(gameStatus)}</Box>
     </VStack>
   );
 } }
 
-  
+
+// need something better than this 
+// <Box>Game In Progress: {gameStatus.gameInProgress.toString()}</Box>
+
+
 export default function PostLoginPage(props: {
   playerName: string;
 //  playerID: PlayerID;
@@ -38,16 +49,19 @@ export default function PostLoginPage(props: {
   );
   const [playerID, setPlayerID] = useState<PlayerID | undefined>(undefined);
   const [gameStatus, setGameStatus] = useState<GameStatus | undefined>(undefined);
-  const [yourMove, setYourMove] = useState<boolean>(false);
+  // const [yourMove, setYourMove] = useState<boolean>(false);
 
 
+  function yourMove() {
+    return (gameStatus?.nextPlayerID === playerID && gameStatus?.gameInProgress);
+  }
   // set up event handlers
   useEffect(() => {
     socket.on("yourTurn", handleYourTurn);
-    socket.on("newGame", handleNewGame);
+    // socket.on("newGame", handleNewGame);
     // socket.on("serverAnnounceNewClient", handleServerAnnounceNewClient);
-    socket.on("serverAnnouncePlayerMoved", handleServerAnnouncePlayerMoved);
-    socket.on("serverAnnounceWinner", handleServerAnnounceWinner);
+    // socket.on("serverAnnouncePlayerMoved", handleServerAnnouncePlayerMoved);
+    // socket.on("serverAnnounceWinner", handleServerAnnounceWinner);
 
     socket?.on("assignID", (playerID: PlayerID, gameStatus: GameStatus) => {
       console.log(`client received assignID ${playerID}`);
@@ -56,7 +70,15 @@ export default function PostLoginPage(props: {
       setPlayerID((_) => playerID);
       setGameStatus(gameStatus);
     });
-   
+
+    socket.on(
+      "serverAnnounceStatusChanged",
+      (reason: string, gameStatus: GameStatus) => {
+        console.log(`serverAnnounceStatusChanged: ${reason}`);
+        console.log("gameStatus", gameStatus);
+        setGameStatus((_) => gameStatus);
+      }
+    );
   }, [socket]);
 
   function handleNewGame(gameNumber: GameNumber, boardState: BoardState) {
@@ -66,7 +88,7 @@ export default function PostLoginPage(props: {
 
   function handleYourTurn(gameNumber: GameNumber, boardState: BoardState) {
    // setGameStatusMessage((_) => `Your turn!`);
-    setYourMove((_) => true);
+    // setYourMove((_) => true);
     setBoardState((_) => boardState);
   }
 
@@ -91,24 +113,20 @@ export default function PostLoginPage(props: {
 
   return (
     <VStack>
-      <Heading>Player {props.playerName} (ID: {playerID}) </Heading>
+      <Heading>
+        Player {props.playerName} (ID: {playerID}){" "}
+      </Heading>
       <VStack align="left">
-        /**
-      
-    {/** <Box>Game In Progress: {props.gameStatus.gameInProgress ? "Yes" : "No"}</Box> */ }
-        <Box> Status: {displayGameStatusMessage(gameStatus)}</Box> */  
-        <Box> Board State: {boardState} </Box>
-        {(yourMove) ? (
+        {displayGameStatusMessage(gameStatus)}
+        {(yourMove()) ? (
           <YourMoveForm
             maxMove={boardState as number}
             onSubmit={(move) => {
               socket.emit("clientTakesMove", move);
-              setYourMove(false);
+              // setYourMove(false);
             }}
           />
-        ) : (
-          "State: waiting for opponent"
-        )}
+        ): null}
       </VStack>
     </VStack>
   );

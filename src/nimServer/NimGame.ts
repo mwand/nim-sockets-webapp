@@ -1,3 +1,4 @@
+import next from 'next';
 import { Player, ServerSocket, INimGame, moveResponse, GameStatus } from '../shared/types';
 import PlayerList from './PlayerList';
 
@@ -23,10 +24,12 @@ export default class NimGame implements INimGame {
     private _pile: number;
 
     /** the players in the game, initally empty */
-    private _players = new PlayerList();
+    public _players = new PlayerList();
 
     /** is a game currently in progress? */
-    private _gameInProgress: boolean = false;
+    /* this is bad, because it is not a single source of true 
+    the game is in progress if the players list has at least two players   */
+    // private _gameInProgress: boolean = false;
 
      /**
      * Creates a new instance of the Nim class.
@@ -46,12 +49,15 @@ export default class NimGame implements INimGame {
     public get boardState(): number { return this._pile }
     public get isGameOver(): boolean { return this._pile === 0 }
     public get playerNames(): string[] { return this._players.playerNames }
-    public get nPlayers() { return this._players.nPlayers; }  
-    public get isGameInProgress(): boolean { return this._gameInProgress; }
+    // I had forgotten to put the : number return type on this function.
+    // Caused all kinds of mysterious errors.
+    public get nPlayers() : number { return this._players.nPlayers(); }  
+    public get isGameInProgress(): boolean { return (this.nPlayers >= 2) }
+    public get currentPlayer(): Player | undefined { return this._players.currentPlayer; }
     
     public get gameStatus() : GameStatus {
         return {
-            gameInProgress: this._gameInProgress,
+            gameInProgress: this.isGameInProgress,
             boardState: this._pile,
             nextPlayerName: this._players.currentPlayer?.name,
             nextPlayerID: this._players.currentPlayer?.playerID
@@ -59,44 +65,36 @@ export default class NimGame implements INimGame {
     }
 
     /** add a player */
-    // if there are at least two players, 
-    // and the game is not already in progress, 
-    // then start the game
+    // starting the game is the controller's job
     public addPlayer(player: Player): void {
         this._players.addPlayer(player);
-        if ((this._players.nPlayers() >= 2) && !this._gameInProgress){
-            console.log('NimGame.ts: starting game')
-            console.log('playerNames:', this.playerNames)
-            // start the game 
-            // the first player is whoever the PlayerList thinks is the current player.
-            this.startGame(this._players.currentPlayer as Player);
-        }
-    }
+        console.log(`game added player ${player.name}`) 
+        console.log(`game current players:`, this.playerNames)
+        console.log(`game players:`, this._players.playerNames)
+        console.log(`game nPlayers:`, this._players.nPlayers())
+        console.log(`gameStatus:`, this.gameStatus)       
+    } 
 
     // we'll use the socket as the key to remove a player
-    public removePlayer(socket: ServerSocket) {
-        this._players.removePlayer(socket)
-        // if there are no players, end the game
-        if (this._players.nPlayers() === 0) {
-            this._gameInProgress = false;
-            this._pile = this._initPile;
-        }
+    public removePlayer(removedPlayerSocket: ServerSocket) {
+       // PlayerList will advance to the next player
+        this._players.removePlayer(removedPlayerSocket)
+        // if there are no more players, the controller will restart the game
+        // // if there are no players, end the game
+        // if (this._players.nPlayers() === 0) {
+        //     this._pile = this._initPile;
+       //  } 
     }    
 
     /** reset the game to the starting state, with the same set of players */
     // start the game by sending the first player their turn. Also tells 
     // each player that the game has started.
     public startGame(firstPlayer:Player): void {
+        console.log(`NimGame.ts[${firstPlayer.name}]: starting game`)
         this._gameNumber++
         this._pile = this._initPile;
-        this._gameInProgress = true; 
-        // tell each player that the game has started       
-        this._players.players.forEach(p => {
-            p.socket.emit('newGame', this.gameStatus);
-        })
-        // tell the first player that it's their turn
-        console.log('telling first player it\'s their turn', firstPlayer.name, firstPlayer.playerID)
-        firstPlayer.socket.emit('yourTurn', this._gameNumber, this._pile);
+        
+       
     }  
 
     /**
@@ -106,10 +104,7 @@ export default class NimGame implements INimGame {
      * if the number of sticks is valid, advances the turn to the next player
     */
     public move(player: Player, numSticks: number): moveResponse {
-        if (!this._gameInProgress) {
-            console.log('game not in progress')
-            throw new Error("No game in progress");
-        }
+        
         if (player.playerID !== this._players.currentPlayer?.playerID) {
             console.log('not this player\'s turn')
             console.log('player', player.name, player.playerID);
@@ -148,7 +143,6 @@ export default class NimGame implements INimGame {
             // the winner gets to go first in the next game.
             // should this be the job of startGame?
             this._pile = this._initPile;
-            this._gameInProgress = false;
             return {
                 moveAccepted: true,
                 isGameOver: true,
