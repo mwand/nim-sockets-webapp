@@ -1,4 +1,7 @@
-import type { Player, ServerSocket, IPlayerList } from "../shared/types";
+import type { Player, IPlayerList, ServerSocket } from "../shared/types";
+
+// mock socket definition for testing
+// export type ServerSocket = any;
 
 export default class PlayerList implements IPlayerList {
 
@@ -10,53 +13,53 @@ export default class PlayerList implements IPlayerList {
 
     public nPlayers() {return this._players.length; }
 
-    /** the index of the current player */
-    private _currentIndex: number | undefined;
+   
+    // the ID of the current player is the key to the player object in the list
+    private _currentID: string | undefined;
 
-
-    // constructor() {
-    //     this._players = [];
-    // }
+    // the current player is the one with the currentID.
+    public get currentPlayer(): Player | undefined {
+        return this._currentID !== undefined? 
+            this._players.find(p => p.playerID === this._currentID) : undefined;
+    }
+    
 
     /** add a player to the list */
     /** make the first player added the initial current player */
     public addPlayer(player: Player) {
         this._players.push(player);
         if (this._players.length === 1) {
-            this._currentIndex = 0;
+            this._currentID = player.playerID;
         }
     }
 
     // use socket as the key to remove a player
-    // if the player removed is the current player, advance to the next player
+    
     public removePlayer(socket:ServerSocket) {
         const index = this._players.findIndex(p => p.socket === socket)
-        if (index === this.currentIndex) {  
+        // if the player removed is the current player, advance to the next player
+        // removing the last player makes the current player undefined.
+        if (this._players[index] === this.currentPlayer) {  
             this.advancePlayer();
         }
         this._players = this._players.filter(p => p.socket !== socket)
     }
 
-    // public get nPlayers() { return this._players.length; }
-    // public get playerList() { return this._players; }
-    
-
-    // index of the current player
-    public get currentIndex(): number | undefined { 
-        return this._currentIndex; 
+    private get _indexOfCurrentPlayer(): number | undefined {
+        return this.currentPlayer !== undefined 
+            ? this._players.findIndex(p => p === this.currentPlayer) 
+            : undefined;
     }
-
-    // the current player
-    public get currentPlayer(): Player | undefined {
-        return this._currentIndex !== undefined? this._players[this._currentIndex] : undefined;
-    }
-    
 
     /** advances the current player to the next player in the list */
+    // if there are no players, the next current player is undefined
     public advancePlayer(): void {
-        if (this._currentIndex !== undefined) {
+        if (this._currentID !== undefined) {
             const nPlayers = this._players.length
-            this._currentIndex = (this._currentIndex + 1) % nPlayers
+            const nextIndex = (this._indexOfCurrentPlayer as number + 1) % nPlayers
+            this._currentID = this._players[nextIndex].playerID
+        } else {
+            this._currentID = undefined;  // this line included for clarity
         }
     }
 
