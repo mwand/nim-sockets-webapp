@@ -37,20 +37,6 @@ export default class ServerController {
         this._socket.on("clientTakesMove", this.clientTakesMoveHandler.bind(this))
     } 
 
-    public disconnect() {
-        console.log(`controller[${this.playerName}] received disconnect on its socket`)
-        console.log({currentPlayers: this._game.playerNames})
-        console.log('controller removing player', this.playerName)
-        // remove this client from the game
-        // if this is the current player, the game will advance to the next player
-        this._game.removePlayer(this._socket);
-        console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
-        this._io.emit('serverAnnounceStatusChanged', 'playerDisconnected', this._game.gameStatus)
-        // tell the next player it's their turn.
-       this.requestNextMove(this._game.currentPlayer?.socket as ServerSocket)
-    }
-
-
     private helloFromClientHandler(clientName: string): void {
         console.log(`controller[${clientName}]: received helloFromClient ${clientName}`)
         const playerID = nanoid(6);
@@ -118,13 +104,16 @@ export default class ServerController {
 
     // when the game is over, announce the winner and start a new game
     private handleGameOver(player: Player, move: number) {
-            console.log('serverAnnounceWinner', player.name, player.playerID);
-            this.gameNumber++;
-            // this._io.emit('serverAnnounceWinner', player.name, player.playerID);
-            // start a new game, but wait a second
-            setTimeout( () => this._game.startGame(player), 1000)
-        }
-    
+        console.log('serverAnnounceWinner', player.name, player.playerID);
+        this.gameNumber++;
+        // this._io.emit('serverAnnounceWinner', player.name, player.playerID);
+        // putting a setTimeout here doesn't work, 
+        // because the page is reloaded before the timeout expires, and there's no emit
+        // so the page doesn't refresh.
+        // Exercise: how could you fix this?
+        this._game.startGame(player), 1000;
+    }
+
     // tell the next player it's their turn, but wait a second.
     private requestNextMove(nextPlayerSocket: ServerSocket) {
         // wait 1000 ms before sending the next player their turn        
