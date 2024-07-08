@@ -31,13 +31,10 @@ export default class ServerController {
     }
 
 
-    private setupEventHandlers() {
-        
-        console.log('setting up event handlers')
-    
+    private setupEventHandlers() {        
+        console.log('setting up event handlers')    
         this._socket.on("helloFromClient", this.helloFromClientHandler.bind(this))
         this._socket.on("clientTakesMove", this.clientTakesMoveHandler.bind(this))
-
     } 
 
     public disconnect() {
@@ -45,15 +42,18 @@ export default class ServerController {
         console.log({currentPlayers: this._game.playerNames})
         console.log('controller removing player', this.playerName)
         // remove this client from the game
-        // if this is the current player, the game should advance to the next player
+        // if this is the current player, the game will advance to the next player
         this._game.removePlayer(this._socket);
         console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
         this._io.emit('serverAnnounceStatusChanged', 'playerLeaves', this._game.gameStatus)
         // if there are at least 2 players left, tell the next player it's their turn.
-       if (this._game.nPlayers >= 2) {this.requestNextMove(this._game.currentPlayer as Player)}
-       else { // reset the game, to the starting configuration, keeping the current player, if any.
-       this._game.startGame(this._game.currentPlayer)
-       }
+        if (this._game.nPlayers >= 2) { this.requestNextMove(this._game.currentPlayer as Player) }
+        else { 
+            // reset the game, to the starting configuration, keeping the current player, if any.
+            this._game.startGame(this._game.currentPlayer)
+            this._game.currentPlayer?.socket.emit('yourTurn', this.gameNumber, this._game.boardState)
+            
+        }
 
     }
 
@@ -76,10 +76,6 @@ export default class ServerController {
         // no, only in cli client
         this._io.emit('serverAnnounceNewClient', clientName, playerID);
         this._io.emit('serverAnnouncePlayerNames', this._game.playerNames)  
-        
-
-        // did the game recognize the new player?    
-        // console.log(`controller[${clientName}] playerNames:`, this._game.playerNames)
 
         // when the second client joins, start the game
         this.maybeStartGame(clientName, this._player as Player)  
@@ -90,7 +86,7 @@ export default class ServerController {
     private maybeStartGame(clientName: string, firstPlayer: Player) {
         if (this._game.nPlayers == 2) {
             console.log(`controller[${clientName}]: starting game`)
-            this._game.startGame(firstPlayer as Player);
+            this._game.startGame(firstPlayer);
             // announce that the game has started
             this._io.emit('newGame', this.gameNumber, this._game.boardState);
             // tell the first player that it's their turn
@@ -155,17 +151,16 @@ export default class ServerController {
             this._game.startGame(nextPlayer);
         }
     
-    // tell the next player it's their turn, but wait a second.
-    private requestNextMove(nextPlayer: Player) {
-        // wait 1000 ms before sending the next player their turn        
-        setTimeout(this.callback(nextPlayer.socket), 1000)
+    // tell the next player it's their turn
+    private requestNextMove(nextPlayer: Player) { 
+        nextPlayer.socket.emit('yourTurn', this.gameNumber, this._game.boardState);     
+        //setTimeout(this.callback(nextPlayer.socket), 1000)
 
     }
 
     private callback(nextPlayerSocket: ServerSocket) {
         return () => {
-            // console.log('controller.ts: nextPlayer is', nextPlayer?.name, nextPlayer?.playerID)
-            nextPlayerSocket?.emit('yourTurn', this.gameNumber, this._game.boardState);
+            nextPlayerSocket.emit('yourTurn', this.gameNumber, this._game.boardState);
         }
     }
 

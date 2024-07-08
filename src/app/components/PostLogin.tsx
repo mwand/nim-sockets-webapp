@@ -83,8 +83,6 @@ export default function PostLoginPage(props: {
     socket.on(
       "serverAnnounceStatusChanged",
       (reason: string, gameStatus: GameStatus) => {
-        console.log(`serverAnnounceStatusChanged: ${reason}`);
-        console.log("gameStatus", gameStatus);
         setGameStatus((_) => gameStatus);
       }
     );
@@ -96,27 +94,11 @@ export default function PostLoginPage(props: {
   //   window.document.title = `Player ${props.playerName}`;
   // })
 
-  function handleNewGame(gameNumber: GameNumber, boardState: BoardState) {
-   // setGameStatusMessage((_) => `Game ${gameNumber} started!`);
-    setBoardState((_) => boardState);
-  }
-
   function handleYourTurn(gameNumber: GameNumber, boardState: BoardState) {
       setBoardState((_) => boardState);
   }
 
-  function handleServerAnnouncePlayerMoved(
-    playerName: string,
-    move: Move,
-    moveAccepted: boolean,
-    resultingBoardState: BoardState,
-    nextPlayerName: string
-  ) {
-    setBoardState((_) => resultingBoardState);
-    }
-  function handleServerAnnounceWinner(playerName: string, playerID: PlayerID) {
-    // setGameStatusMessage((_) => `Player ${playerName} wins!`);
-  }
+  
   
 
   return (
