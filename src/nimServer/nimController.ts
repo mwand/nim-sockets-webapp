@@ -45,7 +45,7 @@ export default class ServerController {
         console.log({currentPlayers: this._game.playerNames})
         console.log('controller removing player', this.playerName)
         // remove this client from the game
-        // if this is the current player, the game will advance to the next player
+        // in the two player game, the game stops when a player leaves.
         this._game.removePlayer(this._socket);
         console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
         this._io.emit('serverAnnounceStatusChanged', 'playerDisconnected', this._game.gameStatus)

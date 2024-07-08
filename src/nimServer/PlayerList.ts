@@ -2,6 +2,16 @@ import type { Player, ServerSocket, IPlayerList } from "../shared/types";
 
 export default class PlayerList implements IPlayerList {
 
+    /** this version allows only two players
+     * the first player to join is player 0
+     * the second player to join is player 1
+     * if a third player tries to join, an error is thrown
+     * (it's up to the controller to prevent this from happening)
+     * if a player leaves, the remaining becomes player 0 again.
+     * 
+     * the current player is the one in slot this._currentIndex
+     */
+
     /** the players in the game, initially empty */
     private _players: Player[] = []
 
@@ -11,12 +21,7 @@ export default class PlayerList implements IPlayerList {
     public nPlayers() {return this._players.length; }
 
     /** the index of the current player */
-    private _currentIndex: number | undefined;
-
-
-    // constructor() {
-    //     this._players = [];
-    // }
+    private _currentIndex: number | undefined;    
 
     /** add a player to the list */
     /** make the first player added the initial current player */
@@ -27,24 +32,14 @@ export default class PlayerList implements IPlayerList {
         }
     }
 
-    // use socket as the key to remove a player
-    // if the player removed is the current player, advance to the next player
+    // use socket as the key to remove a player.
+    // the remaining player, is left in slot 0 (!)
+    // if there are more than two players, you'll need something more elaborate.
     public removePlayer(socket:ServerSocket) {
-        const index = this._players.findIndex(p => p.socket === socket)
-        if (index === this.currentIndex) {  
-            this.advancePlayer();
-        }
         this._players = this._players.filter(p => p.socket !== socket)
+        // at this point, the game stops.  How to signal this?
     }
-
-    // public get nPlayers() { return this._players.length; }
-    // public get playerList() { return this._players; }
     
-
-    // index of the current player
-    public get currentIndex(): number | undefined { 
-        return this._currentIndex; 
-    }
 
     // the current player
     public get currentPlayer(): Player | undefined {
