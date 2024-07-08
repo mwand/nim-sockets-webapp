@@ -77,11 +77,13 @@ export default class NimGame implements INimGame {
 
     // we'll use the socket as the key to remove a player
     public removePlayer(removedPlayerSocket: ServerSocket) {
+       // PlayerList will advance to the next player
         this._players.removePlayer(removedPlayerSocket)
-       // since there can be at most one player, left, the game is over.
+        // if there are no players, end the game
+        if (this._players.nPlayers() === 0) {
             this._gameInProgress = false;
             this._pile = this._initPile;
-        
+        } 
     }    
 
     /** reset the game to the starting state, with the same set of players */

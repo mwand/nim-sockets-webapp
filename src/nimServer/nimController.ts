@@ -37,6 +37,20 @@ export default class ServerController {
         this._socket.on("clientTakesMove", this.clientTakesMoveHandler.bind(this))
     } 
 
+    public disconnect() {
+        console.log(`controller[${this.playerName}] received disconnect on its socket`)
+        console.log({currentPlayers: this._game.playerNames})
+        console.log('controller removing player', this.playerName)
+        // remove this client from the game
+        // if this is the current player, the game will advance to the next player
+        this._game.removePlayer(this._socket);
+        console.log(`controller[${this.playerName}] remaining playerNames:`, this._game.playerNames)
+        this._io.emit('serverAnnounceStatusChanged', 'playerDisconnected', this._game.gameStatus)
+        // tell the next player it's their turn.
+       this.requestNextMove(this._game.currentPlayer?.socket as ServerSocket)
+    }
+
+
     private helloFromClientHandler(clientName: string): void {
         console.log(`controller[${clientName}]: received helloFromClient ${clientName}`)
         const playerID = nanoid(6);
