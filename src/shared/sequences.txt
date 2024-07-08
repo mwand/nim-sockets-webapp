@@ -1,0 +1,7 @@
+Possible Event Sequences (scenarios)
+
+With two players, game underway
+
+PlayerLeaves when it is their turn
+PlayerLeaves when it is not their turn
+

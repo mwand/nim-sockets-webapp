@@ -93,9 +93,10 @@ export default class NimGame implements INimGame {
         this._gameInProgress = true; 
         // tell each player that the game has started       
         this._players.players.forEach(p => {
-            p.socket.emit('newGame', this._gameNumber, this._pile);
+            p.socket.emit('newGame', this.gameStatus);
         })
         // tell the first player that it's their turn
+        console.log('telling first player it\'s their turn', firstPlayer.name, firstPlayer.playerID)
         firstPlayer.socket.emit('yourTurn', this._gameNumber, this._pile);
     }  
 
