@@ -86,14 +86,13 @@ export default class NimGame implements INimGame {
        //  } 
     }    
 
-    /** reset the game to the starting state, with the same set of players */
-    // start the game by sending the first player their turn. Also tells 
-    // each player that the game has started.
-    public startGame(firstPlayer:Player): void {
-        console.log(`NimGame.ts[${firstPlayer.name}]: starting game`)
+    /** resets the game to the starting state, with the same set of players (possibly empty) */    
+    public startGame(firstPlayer:Player | undefined): void {
+        if (firstPlayer !== undefined) {
+            console.log(`NimGame.ts[${firstPlayer.name}]: starting game`)
+        }
         this._gameNumber++
-        this._pile = this._initPile;
-        
+        this._pile = this._initPile;       
        
     }  
 

@@ -8,15 +8,29 @@ import type { ClientSocket, GameStatus } from "../../shared/types";
 
 import YourMoveForm from './YourMoveForm';
 
-function nextPlayerName(gameStatus: GameStatus | undefined): string {
+function foo (gameStatus: GameStatus | undefined, thisPlayerName:string): string {
   if (gameStatus?.nextPlayerName === undefined || gameStatus?.gameInProgress === false) {
     return "waiting for start";
-  } else {
+  } else if (gameStatus?.nextPlayerName === thisPlayerName) {
+
+    return "YOUR TURN!"
+  } else 
+  {
     return gameStatus.nextPlayerName;
   }
 }
 
-function displayGameStatusMessage(gameStatus: GameStatus | undefined){
+function nextPlayerName (gameStatus: GameStatus | undefined, thisPlayerID:string) : string { 
+  return (
+  (gameStatus?.nextPlayerName === undefined || gameStatus?.gameInProgress === false) 
+  ? "waiting for start" 
+  : (gameStatus?.nextPlayerID === thisPlayerID)
+  ? "YOUR TURN!"
+  : gameStatus.nextPlayerName
+  )
+}
+
+function displayGameStatusMessage(gameStatus: GameStatus | undefined, playerID: PlayerID | undefined){
 
   useEffect(() => {
   console.log("gameStatus", gameStatus);
@@ -24,10 +38,9 @@ function displayGameStatusMessage(gameStatus: GameStatus | undefined){
 
   if (gameStatus !== undefined){
   return (
-    <VStack align="left">
-      
+    <VStack align="left">      
       <Box>Board State: {gameStatus.boardState}</Box>
-      <Box>Next Player: {nextPlayerName(gameStatus)}</Box>
+      <Box>Next Player: {nextPlayerName(gameStatus,playerID as string)}</Box>
     </VStack>
   );
 } }
@@ -39,17 +52,16 @@ function displayGameStatusMessage(gameStatus: GameStatus | undefined){
 
 export default function PostLoginPage(props: {
   playerName: string;
-//  playerID: PlayerID;
-//  gameStatus:GameStatus
   socket: ClientSocket;
 }) {
   const [socket, _] = useState<ClientSocket>(props.socket);
-   const [boardState, setBoardState] = useState<BoardState | undefined>(
+  const [boardState, setBoardState] = useState<BoardState | undefined>(
     undefined
   );
   const [playerID, setPlayerID] = useState<PlayerID | undefined>(undefined);
-  const [gameStatus, setGameStatus] = useState<GameStatus | undefined>(undefined);
-  // const [yourMove, setYourMove] = useState<boolean>(false);
+  const [gameStatus, setGameStatus] = useState<GameStatus | undefined>(
+    undefined
+  );
 
 
   function yourMove() {
@@ -58,17 +70,14 @@ export default function PostLoginPage(props: {
   // set up event handlers
   useEffect(() => {
     socket.on("yourTurn", handleYourTurn);
-    // socket.on("newGame", handleNewGame);
-    // socket.on("serverAnnounceNewClient", handleServerAnnounceNewClient);
-    // socket.on("serverAnnouncePlayerMoved", handleServerAnnouncePlayerMoved);
-    // socket.on("serverAnnounceWinner", handleServerAnnounceWinner);
-
+  
     socket?.on("assignID", (playerID: PlayerID, gameStatus: GameStatus) => {
       console.log(`client received assignID ${playerID}`);
       console.log("playerID", playerID);
       console.log("received gameStatus", gameStatus);
       setPlayerID((_) => playerID);
       setGameStatus(gameStatus);
+      setBoardState((_) => gameStatus.boardState);
     });
 
     socket.on(
@@ -81,15 +90,19 @@ export default function PostLoginPage(props: {
     );
   }, [socket]);
 
+  // this results in a window consisting entirely of the player's name,
+  // no other data.  Maybe needs to use the Navigation component?
+  // useEffect(() => {
+  //   window.document.title = `Player ${props.playerName}`;
+  // })
+
   function handleNewGame(gameNumber: GameNumber, boardState: BoardState) {
    // setGameStatusMessage((_) => `Game ${gameNumber} started!`);
     setBoardState((_) => boardState);
   }
 
   function handleYourTurn(gameNumber: GameNumber, boardState: BoardState) {
-   // setGameStatusMessage((_) => `Your turn!`);
-    // setYourMove((_) => true);
-    setBoardState((_) => boardState);
+      setBoardState((_) => boardState);
   }
 
   function handleServerAnnouncePlayerMoved(
@@ -100,12 +113,7 @@ export default function PostLoginPage(props: {
     nextPlayerName: string
   ) {
     setBoardState((_) => resultingBoardState);
-  //  // setGameStatusMessage(
-  //     (_) => (moveAccepted ? 
-  //       `Player ${playerName} moved ${move} sticks. Next player is ${nextPlayerName}`
-  //       : `Player ${playerName} tried to move ${move} sticks, which was illegal. Next player is ${nextPlayerName}`
-  //   ));
-  }
+    }
   function handleServerAnnounceWinner(playerName: string, playerID: PlayerID) {
     // setGameStatusMessage((_) => `Player ${playerName} wins!`);
   }
@@ -117,7 +125,7 @@ export default function PostLoginPage(props: {
         Player {props.playerName} (ID: {playerID}){" "}
       </Heading>
       <VStack align="left">
-        {displayGameStatusMessage(gameStatus)}
+        {displayGameStatusMessage(gameStatus,playerID)}
         {(yourMove()) ? (
           <YourMoveForm
             maxMove={boardState as number}

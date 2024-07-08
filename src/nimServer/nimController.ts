@@ -51,6 +51,10 @@ export default class ServerController {
         this._io.emit('serverAnnounceStatusChanged', 'playerLeaves', this._game.gameStatus)
         // if there are at least 2 players left, tell the next player it's their turn.
        if (this._game.nPlayers >= 2) {this.requestNextMove(this._game.currentPlayer as Player)}
+       else { // reset the game, to the starting configuration, keeping the current player, if any.
+       this._game.startGame(this._game.currentPlayer)
+       }
+
     }
 
     private helloFromClientHandler(clientName: string): void {
