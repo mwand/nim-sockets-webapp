@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import {
   Button, Box,
   FormControl,
@@ -14,7 +14,8 @@ import type { ClientSocket } from "../../shared/types";
 
 export default function YourMoveForm (props: { 
     maxMove:number, 
-    onSubmit: (arg0: number) => void }) {
+    onSubmit: (arg0: number) => void }) 
+    {
       // the player's move, as a string
       const [move, setMove] = useState<string>("");
 
@@ -51,7 +52,6 @@ export default function YourMoveForm (props: {
                       Submit
                     </Button>
                   </Box>
-                  //{" "}
                 </HStack>
               </VStack>
             </FormControl>

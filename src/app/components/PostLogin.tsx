@@ -8,18 +8,6 @@ import type { ClientSocket, GameStatus } from "../../shared/types";
 
 import YourMoveForm from './YourMoveForm';
 
-function foo (gameStatus: GameStatus | undefined, thisPlayerName:string): string {
-  if (gameStatus?.nextPlayerName === undefined || gameStatus?.gameInProgress === false) {
-    return "waiting for start";
-  } else if (gameStatus?.nextPlayerName === thisPlayerName) {
-
-    return "YOUR TURN!"
-  } else 
-  {
-    return gameStatus.nextPlayerName;
-  }
-}
-
 function nextPlayerName (gameStatus: GameStatus | undefined, thisPlayerID:string) : string { 
   return (
   (gameStatus?.nextPlayerName === undefined || gameStatus?.gameInProgress === false) 
@@ -30,7 +18,7 @@ function nextPlayerName (gameStatus: GameStatus | undefined, thisPlayerID:string
   )
 }
 
-function displayGameStatusMessage(gameStatus: GameStatus | undefined, playerID: PlayerID | undefined){
+function GameStatusMessage(gameStatus: GameStatus | undefined, playerID: PlayerID | undefined){
 
   useEffect(() => {
   console.log("gameStatus", gameStatus);
@@ -107,7 +95,7 @@ export default function PostLoginPage(props: {
         Player {props.playerName} (ID: {playerID}){" "}
       </Heading>
       <VStack align="left">
-        {displayGameStatusMessage(gameStatus,playerID)}
+        {GameStatusMessage(gameStatus,playerID)}
         {(yourMove()) ? (
           <YourMoveForm
             maxMove={boardState as number}
