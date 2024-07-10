@@ -5,12 +5,12 @@ interface GameStatusProps {
     stonesRemaining: number;
 }
 
-const GameStatus = (props: { currentPlayer, stonesRemaining }) => {
+const GameStatus = (props: GameStatusProps) => {
     return (
         <div>
             <h2>Game Status</h2>
-            <p>Current Player: {currentPlayer}</p>
-            <p>Stones Remaining: {stonesRemaining}</p>
+            <p>Current Player: {props.currentPlayer}</p>
+            <p>Stones Remaining: {props.stonesRemaining}</p>
         </div>
     );
 };

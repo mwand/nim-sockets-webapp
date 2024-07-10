@@ -49,7 +49,9 @@ export default class Client {
         this.socket.on('assignID', this.handleAssignID.bind(this));
         this.socket.on('newGame', this.handleNewGame.bind(this));
         this.socket.on('serverAnnounceNewClient', this.handleServerAnnounceNewClient.bind(this));
-        this.socket.on('serverAnnouncePlayerMoved', this.handleServerAnnouncePlayerMoved.bind(this));
+        // type of serverAnnouncePlayerMoved has changed since the last commit.
+        // need to update this to match latest version of types.ts
+        // this.socket.on('serverAnnouncePlayerMoved', this.handleServerAnnouncePlayerMoved.bind(this));
         this.socket.on('serverAnnounceWinner', this.handleServerAnnounceWinner.bind(this));
     
     }

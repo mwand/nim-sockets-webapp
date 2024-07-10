@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 import { Heading, Box, Button } from "@chakra-ui/react";
 
 
-export default function nimApp () {
+export default function NimApp () {
   const [socket, setSocket] = useState<ClientSocket | null>(null);
   const [playerID, setPlayerID] = useState<PlayerID | undefined>(undefined);
   const [playerName, setPlayerName] = useState<string>("");
@@ -31,14 +31,17 @@ export default function nimApp () {
 
   // on first render, connect to the server (just like bareBones.tsx)
   useEffect(() => {
-    const socket = io("ws://localhost:8080");
-    setSocket(_ => socket); 
+    const socket1 = io("ws://localhost:8080");
+    setSocket(_ => socket1); 
     setIsConnected(_ => true);
     return () => {
-      socket?.emit('clientDisconnect', playerID)
-      socket.disconnect();
+      // is anybody listening for this?
+      // socket1.emit('clientDisconnect', playerID)
+      socket1.disconnect();
     };
   }, []);
+
+  
 
   // moving this to the PostLogin component
   // once socket is set up, send a helloFromClient message
