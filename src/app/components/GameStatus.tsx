@@ -4,7 +4,7 @@ interface GameStatusProps {
     currentPlayer: string;
     stonesRemaining: number;
 }
-
+ 
 const GameStatus = (props: GameStatusProps) => {
     return (
         <div>
