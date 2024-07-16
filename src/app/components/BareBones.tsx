@@ -1,7 +1,7 @@
 "use client"
 import * as React from 'react';
 
-import type { ClientSocket } from "../../shared/types";
+import type { ClientSocket } from "../../../shared/types";
 import io from "socket.io-client";
 
 import { useEffect, useState } from "react";
