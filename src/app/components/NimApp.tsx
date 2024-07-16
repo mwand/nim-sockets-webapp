@@ -10,8 +10,8 @@ import {
   Player,
   Move,
   Strategy,
-} from "../../shared/types";
-import type { ClientSocket } from "../../shared/types";
+} from "../../../shared/types";  // is there a better idiom for this?
+import type { ClientSocket } from "../../../shared/types";
 import io from "socket.io-client";
 import LoginPage from './NimLogin';
 import PostLoginPage from './PostLogin';
