@@ -1,0 +1,8 @@
+{
+    "builds": [
+        {
+            "src": "src/nimServer/nimServer.ts",
+            "use": "@vercel/static-build"
+        }
+    ]
+}
