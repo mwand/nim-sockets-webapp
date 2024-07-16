@@ -27,11 +27,14 @@ export default function NimApp () {
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [gameStatus, setGameStatus] = useState<GameStatus | undefined>(undefined);
 
+  const SERVICEURL = 'nim-sockets-webapp-backend'
+
 
 
   // on first render, connect to the server (just like bareBones.tsx)
   useEffect(() => {
-    const socket1 = io("ws://localhost:8080");
+    // const socket1 = io("ws://localhost:8080");
+    const socket1 = io("ws://" + SERVICEURL + ":8080");
     setSocket(_ => socket1); 
     setIsConnected(_ => true);
     return () => {
