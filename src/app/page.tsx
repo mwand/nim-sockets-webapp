@@ -8,7 +8,7 @@ import App from './components/NimApp'
 export default function Home() {
   return (
     <ChakraProvider>
-      "Hello from Home"
+      Hello from Home
       <App />
     </ChakraProvider>
   );
