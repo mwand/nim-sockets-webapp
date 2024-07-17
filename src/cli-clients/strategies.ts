@@ -1,4 +1,4 @@
-import {BoardState, Move } from '../shared/types';
+import {BoardState, Move } from '../../shared/types';
 
 export function alwaysPlay1(gameState:BoardState): Move {
     return 1;

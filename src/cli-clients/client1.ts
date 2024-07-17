@@ -1,6 +1,6 @@
 import Client from "./Client";
-import { Move } from "../shared/types";
-import { BoardState } from "../shared/types";
+import { Move } from "../../shared/types";
+import { BoardState } from "../../shared/types";
 
 import { alwaysPlay1, greedy } from './strategies';
 

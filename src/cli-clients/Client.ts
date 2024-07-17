@@ -1,5 +1,5 @@
-import { PlayerID, BoardState, GameNumber, Player, Move, Strategy } from "../shared/types";
-import { ClientSocket } from "../shared/types";
+import { PlayerID, BoardState, GameNumber, Player, Move, Strategy } from "../../shared/types";
+import { ClientSocket } from "../../shared/types";
 import io from "socket.io-client";
 import { nanoid } from "nanoid";
 
