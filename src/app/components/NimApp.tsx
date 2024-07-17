@@ -27,8 +27,8 @@ export default function NimApp () {
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [gameStatus, setGameStatus] = useState<GameStatus | undefined>(undefined);
 
-  // const SERVICEURL = 'nim-sockets-webapp-backend'
-  const SERVICEURL = 'localhost'
+  const SERVICEURL = 'nim-sockets-webapp-backend'
+  // const SERVICEURL = 'localhost'
 
 
 
