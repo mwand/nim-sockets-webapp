@@ -1,7 +1,7 @@
 import { PlayerID, BoardState, GameNumber, Player, Move, Strategy } from "../../shared/types";
 import { ClientSocket } from "../../shared/types";
 import io from "socket.io-client";
-import { nanoid } from "nanoid";
+
 
 // playerID is assigned by the server
 type ClientPlayer = {name: string, playerID: PlayerID}
