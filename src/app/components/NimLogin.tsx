@@ -10,7 +10,7 @@ import {
   Text,
   VStack, Tr, Td, Table, Tbody, TableContainer, HStack
 } from '@chakra-ui/react';
-import type { ClientSocket } from "../../shared/types";
+import type { ClientSocket } from "../../../shared/types";
 
 
 export default function LoginPage(

@@ -3,8 +3,8 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Heading, VStack, Box } from '@chakra-ui/react';
 
-import { PlayerID, GameNumber, BoardState, Move } from '@/shared/types';
-import type { ClientSocket, GameStatus } from "../../shared/types";
+import { PlayerID, GameNumber, BoardState, Move } from '../../../shared/types';
+import type { ClientSocket, GameStatus } from "../../../shared/types";
 
 import YourMoveForm from './YourMoveForm';
 

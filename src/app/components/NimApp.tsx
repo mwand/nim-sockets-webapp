@@ -10,8 +10,8 @@ import {
   Player,
   Move,
   Strategy,
-} from "../../shared/types";
-import type { ClientSocket } from "../../shared/types";
+} from "../../../shared/types";  // is there a better idiom for this?
+import type { ClientSocket } from "../../../shared/types";
 import io from "socket.io-client";
 import LoginPage from './NimLogin';
 import PostLoginPage from './PostLogin';
@@ -27,7 +27,8 @@ export default function NimApp () {
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [gameStatus, setGameStatus] = useState<GameStatus | undefined>(undefined);
 
-  const SERVICEURL = 'nim-sockets-webapp-backend'
+  // const SERVICEURL = 'nim-sockets-webapp-backend'
+  const SERVICEURL = 'localhost'
 
 
 

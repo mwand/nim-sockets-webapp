@@ -10,10 +10,11 @@
     "start": "next start",
     "lint": "next lint",
     "client": "next dev",
-    "server": "nodemon --exec \"npx ts-node src/nimServer/nimServer.ts\" -e ts"
+    "backend": "nodemon --exec \"npx ts-node backend/nimServer.ts\" -e ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
+    "nanoid": "^3.3.7",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
