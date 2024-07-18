@@ -12,10 +12,10 @@ export default function Home() {
   const [socket, setSocket] = useState<ClientSocket | null>(null);
   const [isConnected, setIsConnected] = useState<boolean>(false);
   
-
+  const SERVICEURL = 'NEXT_PUBLIC_NIM_SERVICE';//process.env.NEXT_PUBLIC_NIM_SERVICE;
   // on first render, connect to the server
   useEffect(() => {
-    const socket = io("ws://localhost:8080");
+    const socket = io("ws://" + SERVICEURL);
     setSocket(preSocket =>socket); 
     setIsConnected(anything => true);
     return () => {

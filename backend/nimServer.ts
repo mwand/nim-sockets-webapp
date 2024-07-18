@@ -9,7 +9,7 @@ import ServerController from './nimController'
 
 // only listen to requests from localhost:3000.  Not sure if this is necessary
 const corsParams = {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"]
 }
 
