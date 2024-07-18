@@ -28,8 +28,6 @@ const game = new NimGame(20, 3);
 
 let nClients = 0;
 
-console.log('nimServer.ts: Listening on port', port, { nClients: nClients})
-httpServer.listen(port);
 
 
 // set up a new controller for each client
@@ -49,7 +47,12 @@ io.on("connection", (socket: ServerSocket) => {
     })
 })
 
-
+httpServer.listen(port, () =>{
+    console.log('nimServer.ts: Listening on port', port, { nClients: nClients})
+});
+httpServer.on('error', (err) => {
+    console.error('nimServer.ts: Error starting server:', err)
+});
 
 
 
