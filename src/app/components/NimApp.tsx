@@ -34,7 +34,7 @@ export default function NimApp () {
   // on first render, connect to the server (just like bareBones.tsx)
   useEffect(() => {
     console.log('ServiceURL:', SERVICEURL)
-    const socket1 = io("ws://" + SERVICEURL);
+    const socket1 = io(SERVICEURL || "ws://localhost:8080");
     setSocket(_ => socket1); 
     setIsConnected(_ => true);
     return () => {
