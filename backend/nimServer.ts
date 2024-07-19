@@ -1,9 +1,12 @@
 import { createServer as createHttpServer } from "http";
+import CORS from 'cors';
+
 import { Server } from "socket.io";
 import { ServerSocket, ClientToServerEvents, ServerToClientEvents } from '../shared/types'
 import NimGame from "./NimGame";
 import { Player } from "../shared/types";
 import { nanoid } from 'nanoid';
+import Express from 'express';
 import ServerController from './nimController'
 
 
@@ -13,7 +16,9 @@ const corsParams = {
     methods: ["GET", "POST"]
 }
 
-const httpServer = createHttpServer();
+const app = Express();
+app.use(CORS());
+const httpServer = createHttpServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents>
     (httpServer, { cors: corsParams, 
         'pingInterval': 1000, 'pingTimeout': 2000 
@@ -29,6 +34,9 @@ const game = new NimGame(20, 3);
 let nClients = 0;
 
 
+app.get('/', (req, res) => {
+    res.send('nimServer.ts: Hello from Nim Server');
+});
 
 // set up a new controller for each client
 io.on("connection", (socket: ServerSocket) => {
