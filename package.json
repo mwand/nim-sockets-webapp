@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "next lint",
     "client": "next dev",
-    "backend": "nodemon --exec \"npx ts-node backend/nimServer.ts\" -e ts"
+    "backend-dev": "nodemon --exec \"npx ts-node backend/nimServer.ts\" -e ts",
+    "backend": "npx ts-node backend/nimServer.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
