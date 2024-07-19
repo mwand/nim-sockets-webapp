@@ -15,7 +15,8 @@ export default function Home() {
   const SERVICEURL = 'NEXT_PUBLIC_NIM_SERVICE';//process.env.NEXT_PUBLIC_NIM_SERVICE;
   // on first render, connect to the server
   useEffect(() => {
-    const socket = io("ws://" + SERVICEURL);
+    console.log('ServiceURL:', SERVICEURL)
+    const socket = io(SERVICEURL || "ws://localhost:8080");
     setSocket(preSocket =>socket); 
     setIsConnected(anything => true);
     return () => {
