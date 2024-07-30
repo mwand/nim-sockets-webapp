@@ -18,6 +18,7 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents>
     (httpServer, { cors: corsParams, 
         'pingInterval': 1000, 'pingTimeout': 2000 
     });
+const port = process.env.PORT || 8080
 
 // `game` is the single source of truth for the game state
 const game = new NimGame(20, 3);
@@ -27,8 +28,8 @@ const game = new NimGame(20, 3);
 
 let nClients = 0;
 
-console.log('nimServer.ts: Listening on port 8080', { nClients: nClients})
-httpServer.listen(8080);
+console.log('nimServer.ts: Listening on port', port, { nClients: nClients})
+httpServer.listen(port);
 
 
 // set up a new controller for each client
